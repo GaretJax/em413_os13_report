@@ -1,0 +1,29 @@
+{%
+  {\headingsfont\fontsize{10pt}{11pt}\selectfont\bfseries\noindent References}
+  \addcontentsline{toc}{chapter}{\numberline{}References}
+  \vspace{-0.5\baselineskip}
+  \renewcommand{\chapter}[2]{}%
+  \setlist[enumerate]{wide=0pt, widest=99,leftmargin=\parindent,align=left, labelsep=*}
+  \printbibliography
+}
+
+{
+  {\headingsfont\fontsize{10pt}{11pt}\selectfont\bfseries\noindent Statement on the use of AI}
+  \vspace{0.1mm}
+
+  {
+    \setstretch{1.11}
+    \footnotesize
+
+    \noindent Artificial Intelligence, specifically OpenAI's ChatGPT (GPT-5 model), was employed during the preparation of this document as a support tool for research organization, verification, and editorial consistency.
+
+    In addition, ChatGPT was used to improve clarity, coherence, and grammatical accuracy across sections. Whenever ChatGPT returned references, those have been vetted for quality and applicability before being used in the present document.
+
+    All conceptual reasoning, modeling assumptions, and analytical interpretations were developed and validated independently by the authors, who assume full responsibility for the accuracy and integrity of the submitted work.
+  }
+}
+
+{
+  %{\headingsfont\fontsize{10pt}{11pt}\selectfont\bfseries\noindent Acronyms}
+  \printglossary
+}

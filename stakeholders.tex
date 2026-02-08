@@ -1,0 +1,89 @@
+\definecolor{stakeholder}{HTML}{FFCC66}
+\definecolor{need}{HTML}{D2EEFF}
+
+\newcommand{\connect}[1]{
+    \begin{pgfonlayer}{background}
+        \draw[line width=0.7pt] (t) |- (#1.west);
+    \end{pgfonlayer}
+}
+
+\newcommand{\beneficial}{%
+  \tikz[baseline=-0.7ex]{
+    \node[
+      font=\fontsize{9pt}{10pt}\selectfont,
+      text=white,
+      rounded corners=2pt,
+      inner xsep=3pt,
+      inner ysep=1.2mm,
+      fill=Green] {Beneficial};
+  }\;%
+}
+\newcommand{\problem}{%
+  \tikz[baseline=-0.7ex]{
+    \node[
+      font=\fontsize{9pt}{10pt}\selectfont,
+      text=white,
+      rounded corners=2pt,
+      inner xsep=3pt,
+      inner ysep=1.2mm,
+      fill=RedOrange] {Problem};
+  }\;%
+}
+\newcommand{\charitable}{%
+  \tikz[baseline=-0.7ex]{
+    \node[
+      font=\fontsize{9pt}{10pt}\selectfont,
+      text=white,
+      rounded corners=2pt,
+      inner xsep=3pt,
+      inner ysep=1.2mm,
+      fill=NavyBlue] {Charitable};
+  }\;%
+}
+
+
+\tikzset{%
+    stakeholder/.style={
+        draw,
+        anchor=west,
+        font=\bfseries\footnotesize,
+        fill=stakeholder,
+        minimum width=3cm,
+        minimum height=1cm,
+        line width=0.7pt,
+        align=center,
+        append after command={
+            \pgfextra
+                \coordinate (t) at ($(\tikzlastnode.south) - (11mm,0)$);
+                \draw[fill=white,line width=0.7pt] ($(t)-(0,2mm)$) -- ++(-60:0.5) -- ++(180:0.5) -- cycle;
+                \draw[fill=black,line width=0.7pt] ($(t)-(0,3.7mm)$) -- ++(-60:0.2) -- ++(180:0.2) -- cycle;
+            \endpgfextra
+        },
+      },
+      need/.style={
+        draw,
+        font=\bfseries\footnotesize,
+        fill=need,
+        minimum width=3cm,
+        minimum height=1cm,
+        align=center,
+        append after command={
+            \pgfextra
+                \draw[fill=white] ($(\tikzlastnode.east)+(0,0.5)$) arc[start angle=90, end angle=-90, radius=0.1666]
+                arc[start angle=90, end angle=-90, radius=0.1666]
+                arc[start angle=90, end angle=-90, radius=0.1666];
+            \endpgfextra
+        },
+      },
+      needs/.style={
+        matrix of nodes,
+        nodes={need},
+        row sep=1.5mm,
+        column sep=0mm,
+        anchor=west,
+        line width=0.7pt,
+        xshift=10mm,
+        yshift=-3mm,
+        anchor=north,
+      }
+}

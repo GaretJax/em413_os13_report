@@ -1,0 +1,21 @@
+\newacronym{bol}{BOL}{Beginning of Life}
+\newacronym{eol}{EOL}{End of Life}
+\newacronym{dod}{DoD}{Depth of Discharge}
+\newacronym{fov}{FOV}{Field of View}
+\newacronym{ifov}{iFOV}{Instantaneous Field of View}
+\newacronym{grd}{GRD}{Ground Resolution Distance}
+\newacronym{gsd}{GSD}{Ground Sample Distance}
+\newacronym{noaa}{NOAA}{National Oceanic and Atmospheric Administration}
+\newacronym{com}{CoM}{Center of Mass}
+\newacronym{vis}{VIS}{Visible light}
+\newacronym{lwir}{LWIR}{Long-wave Infrared}
+\newacronym{ai}{AI}{Artificial Intelligence}
+\newacronym{leo}{LEO}{Low Earth Orbit}
+\newacronym{geo}{GEO}{Geostationary Earth Orbit}
+\newacronym{tdrss}{TDRSS}{Tracking and Data Relay Satellite System}
+\newacronym{edrs}{EDRS}{European Data Relay System}
+
+\newacronym{mit}{MIT}{Massachusetts Institute of Technology}
+\newacronym[plural=fom,longplural=Figures of Merit]{fom}{FOM}{Figure of Merit}
+
+\makeglossaries

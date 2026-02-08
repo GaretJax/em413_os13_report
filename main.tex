@@ -1,0 +1,65 @@
+\DocumentMetadata
+{
+  lang = en-US,
+  pdfversion = 1.7,
+  pdfstandard = a-3b,
+}
+\documentclass{mitdoc}
+
+\settitle{Dam the Delay}{EM.413 Foundations of System Design and Management: OS 11}
+
+\addauthor{Jonathan Stoppani}
+\addauthor{Kaitlyn Barros}
+\addauthor{Megan Pettingill}
+\addauthor{Morgan Orlovskiy}
+
+\definecolor{palette4}{HTML}{5B616A}
+\definecolor{palette3}{HTML}{275DAD}
+\definecolor{palette2}{HTML}{ABA9C3}
+\definecolor{palette1}{HTML}{CED3DC}
+\definecolor{palette0}{HTML}{FCF7F8}
+
+\newcommand\airbus{Airbus U.S. Space \& Defense}
+
+\begin{document}
+  {
+    \thispagestyle{front}
+
+    \begin{tikzpicture}[remember picture,overlay,yscale=-1,shift=(current page.north west)]
+      \node[anchor=north west,inner sep=0] (img) at (1.4cm, 1.4cm) {\includegraphics[width=\linewidth]{figures/ARROW450.jpg}};
+      \draw
+      ($(img.south west) + (0.5pt,1mm)$)
+      -- ($(img.south west |- 0,284mm) + (0.5pt,0)$)
+      -- ($(img.south east |- 0,284mm) - (0.5pt,0)$)
+      -- ($(img.south east) - (0.5pt,-1mm)$);
+    \end{tikzpicture}
+
+    \vspace*{11.3cm}
+    \begin{adjustwidth}{2.4cm}{2.4cm}
+      \textbf{\Huge \doctitle}\\[1.5mm]
+      {\large Improving Satellite Latency for Airbus U.S. Space \& Defense}
+
+      \vspace{9mm}
+      \noindent \textbf{Team 7}\\
+      \noindent\authorlines
+
+      \vspace{9mm}
+
+      \noindent \textbf{Challenge Topic}\\
+      Currently, Airbus operates constellations of Low Earth Orbit (LEO) satellites that deliver imagery with an end-to-end latency ranging from approximately 49 to 149 minutes, measured from the time an acquisition plan is uploaded via S-band to the time the image is delivered and processed on the ground. This latency profile is driven by a combination of orbital dynamics, ground contact availability, data downlink processes, and downstream processing workflows. The challenge addressed in this project is to design, prototype, and demonstrate a satellite system architecture capable of reducing end-to-end data latency by an order of magnitude, from roughly one hour to single-digit minutes, without compromising mission effectiveness, data integrity, or system viability.
+
+      \vspace{9mm}
+      \noindent \textbf{MIT SDM}\\
+      EM.413 Foundations of System Design and Management\\
+      Opportunity Set 11\\
+      February 2026
+    \end{adjustwidth}
+
+  }
+  \frontmatter\booltrue{frontfoot}
+  \rendertoc
+  \mainmatter\boolfalse{frontfoot}
+  \rendercontent
+  \renderindices
+  \renderappendices
+\end{document}

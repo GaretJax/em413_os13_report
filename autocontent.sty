@@ -1,0 +1,79 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{autocontent}[2025/09/10 Automatically load content from folders]
+
+\RequirePackage{etoolbox}
+\RequirePackage[strict]{changepage}
+\RequirePackage[bookmarks=true]{hyperref}
+
+% Call original TeX \input to avoid conflicts
+\makeatletter
+\newcommand*\ExpandableInput[1]{\@@input#1 }
+\makeatother
+\newcommand\includescript[1]{\ExpandableInput{|"#1"}}
+
+% Main content rendering
+\newtoggle{toc}
+\toggletrue{toc}
+\newcommand{\rendertoc}{%
+  \iftoggle{toc}{%
+    \clearpage
+    \pdfbookmark{\contentsname}{Contents}
+    \pagestyle{front}
+    \renewcommand*\contentsname{
+      \begin{tikzpicture}
+        \fill[fill=palette3] (0,0) rectangle (\linewidth,2mm);
+      \end{tikzpicture}
+      \\[2.5mm]
+      \headingsfont\Large\bfseries
+      \textcolor{palette2}{\num[minimum-integer-digits=2]{\thechapter}.}
+      \raggedright Contents
+      \vspace{-10mm}
+    }
+    \vspace*{-10mm}
+    \tableofcontents
+
+
+    \noindent\begin{minipage}{15cm}
+      \vspace*{60mm}
+      \footnotesize
+      \noindent The image shown on the cover page was retrieved from
+      https://airbusus.com/arrow450/ \\
+      and is \copyright~\airbus.
+    \end{minipage}
+    \clearpage
+  }{}
+}
+
+% Main content rendering
+\newtoggle{content}
+\toggletrue{content}
+\newcommand{\rendercontent}{%
+  \iftoggle{content}{%
+    \pagestyle{main}
+    \includescript{python ./scripts/include-content.py content}
+  }{%
+    \pagestyle{main}
+  }
+}
+
+% Indices rendering
+\newtoggle{indices}
+\toggletrue{indices}
+\newcommand{\renderindices}{%
+  \iftoggle{indices}{%
+    \includescript{python ./scripts/include-content.py --use-input indices}
+  }{}
+}
+
+% Appendices automatic inclusion
+\newtoggle{appendices}
+\toggletrue{appendices}
+\newcommand{\renderappendices}{%
+   \iftoggle{appendices}{%
+     \appendix
+     \labelformat{chapter}{Appendix~##1}
+     \labelformat{section}{subappendix~##1}
+     \labelformat{subsection}{subappendix~##1}
+     \includescript{python ./scripts/include-content.py --use-input appendices}
+   }{}
+}

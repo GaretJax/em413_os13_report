@@ -1,0 +1,7 @@
+build
+pytex.log
+.direnv/
+.envrc
+_minted-master/
+OS11.pdf
+master.tex
