@@ -8,8 +8,8 @@ from decimal import Decimal as D
 import click
 from attrs import define, field
 from jinja2 import BaseLoader, Environment
-from slugify import slugify
 from natsort import natsorted
+from slugify import slugify
 
 
 def replacerefs(text, prefix, label=""):
@@ -38,7 +38,9 @@ def replaceglossary(text, glossary):
 
     for term in terms:
         text = re.sub(
-            f"([^a-zA-Z]){term}([^a-zA-Z])", r"\1\\gls[hyper=true]{%s}\2" % slugify(term), text
+            f"([^a-zA-Z]){term}([^a-zA-Z])",
+            r"\1\\gls[hyper=true]{%s}\2" % slugify(term),
+            text,
         )
     return text
 
@@ -135,6 +137,8 @@ class WrapperBase:
 
 
 def quote(text):
+    if not text:
+        return ""
     t = (
         text.strip()
         .replace("%", r"\%")
@@ -160,7 +164,9 @@ class SkippableDictReader(csv.DictReader):
             next(self.reader)
 
 
-def print_table(fh, rows, cols, start_at, skip_cols, wrappers, row_template):
+def print_table(
+    fh, rows, cols, start_at, skip_headers, skip_cols, wrappers, row_template
+):
     delimiter = ","
     if fh.name.endswith(".tsv"):
         delimiter = "\t"
@@ -168,21 +174,29 @@ def print_table(fh, rows, cols, start_at, skip_cols, wrappers, row_template):
     cols = list(cols.filter(data.fieldnames))
     if skip_cols:
         cols = [c for c in cols if c not in skip_cols]
+
+    if not skip_headers:
+        data = [dict(zip(cols, cols))] + list(data)
+
     for row, data in enumerate(rows.filter(data)):
-        values = []
-        has_value = False
-        data = [data[k] for k in cols]
-        for col, cell in enumerate(data):
-            cell = quote(cell)
-            if cell:
-                has_value = True
-            for wrapper in wrappers:
-                cell = wrapper.wrap((row, col), cell)
-            values.append(cell)
-        value = row_template(values, has_value)
+        print_row(row, data, cols, wrappers, row_template)
+
+
+def print_row(row, data, cols, wrappers, row_template):
+    values = []
+    has_value = False
+    data = [data[k] for k in cols]
+    for col, cell in enumerate(data):
+        cell = quote(cell)
+        if cell:
+            has_value = True
         for wrapper in wrappers:
-            value = wrapper.wrap_row(row, value)
-        print(value, end="")
+            cell = wrapper.wrap((row, col), cell)
+        values.append(cell)
+    value = row_template(values, has_value)
+    for wrapper in wrappers:
+        value = wrapper.wrap_row(row, value)
+    print(value, end="")
 
 
 @define
@@ -199,6 +213,10 @@ class Wrapper(WrapperBase):
         else:
             space = "" if value.startswith("\\") else " "
             return rf"\{self.directive}{space}{value}"
+
+    @classmethod
+    def parse(cls, spans, args):
+        return cls(spans=spans, directive=args)
 
 
 @define
@@ -357,6 +375,7 @@ class RowBorderWrapper(WrapperBase):
     priority = 0
     border_top: bool = field(default=False)
     border_bottom: bool = field(default=False)
+    border_command: str = field(default="midrule")
 
     @classmethod
     def parse(cls, spans, args):
@@ -367,7 +386,7 @@ class RowBorderWrapper(WrapperBase):
 
     def apply_row(self, value):
         if self.border_top:
-            value = f"\\midrule\n{value}"
+            value = f"\\{self.border_command}\n{value}"
         return value
 
 
@@ -400,6 +419,7 @@ MODIFIERS = {
     "list": List,
     "cmark-if": CheckmarkIfValue,
     "xmark-if": CrossmarkIfValue,
+    "wrap": Wrapper,
 }
 
 
@@ -441,6 +461,17 @@ def simple_row(values, has_value):
     is_flag=True,
     default=True,
 )
+@click.option(
+    "--border-middle-command",
+    "border_mid_cmd",
+    default="midrule",
+)
+@click.option(
+    "--skip-headers/--no-skip-headers",
+    "skip_headers",
+    is_flag=True,
+    default=True,
+)
 @click.option("--rows")
 @click.option("--cols")
 @click.option("--skip-cols")
@@ -456,7 +487,9 @@ def main(
     col_modifiers,
     border_top,
     border_mid,
+    border_mid_cmd,
     border_bottom,
+    skip_headers,
     template,
 ):
     rows = Spans.parse(rows) if rows else Spans.all()
@@ -470,6 +503,7 @@ def main(
             ),
             border_top=border_mid,
             border_bottom=False,
+            border_command=border_mid_cmd,
         ),
         RowWrapper(spans=RowSpans.all()),
     ]
@@ -505,7 +539,9 @@ def main(
     else:
         template_func = simple_row
 
-    print_table(path, rows, cols, start_at, skip_cols, wrappers, template_func)
+    print_table(
+        path, rows, cols, start_at, skip_headers, skip_cols, wrappers, template_func
+    )
     if border_bottom:
         print(r"\midrule")
 
