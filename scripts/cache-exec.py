@@ -15,11 +15,12 @@ def main(args):
     CACHEDIR.mkdir(exist_ok=True)
 
     cache = (CACHEDIR / spec).with_suffix(".tex")
+    sys.stderr.write(f"Using cache file at {cache}\n")
     if not cache.exists() or os.environ.get("NOCACHE"):
         out = subprocess.run(args, capture_output=True)
         cache.write_bytes(out.stdout)
 
-    print(cache.read_text())
+    sys.stdout.write(cache.read_text())
 
 
 if __name__ == "__main__":
