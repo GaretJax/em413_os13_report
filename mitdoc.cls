@@ -1,6 +1,14 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{mitdoc}[2025/09/10 MIT Documents by Jonathan Stoppani]
 
+\newif\if@showtodos
+\@showtodosfalse
+\DeclareOption{showtodos}{
+  \@showtodostrue
+}
+
+\ProcessOptions\relax
+
 \LoadClass[10pt,oneside]{book}
 \RequirePackage{etoolbox}
 \usepackage[dvipsnames,table]{xcolor}
@@ -678,23 +686,6 @@
 }
 \makeatother
 
-%\setlength{\marginparwidth}{2cm}
-%\paperwidth=\dimexpr \paperwidth + 6cm\relax
-%\marginparwidth=5.4cm
-%\marginparsep=1.7cm
-%\RequirePackage[textwidth=\marginparwidth]{todonotes}
-%
-%\usepackage{atbegshi}
-%\AtBeginShipout{
-%  \AtBeginShipoutUpperLeft{
-%    \begin{tikzpicture}[remember picture,overlay,scale=-1,shift=(current page.north east)]
-%      \fill[fill=black!2] (0,0) rectangle (\marginparwidth + 0.6cm,\paperheight);
-%      \draw[draw=black!20] (\marginparwidth + 0.6cm,0) -- ++(0,\paperheight);
-%    \end{tikzpicture}
-%  }
-%}
-
-
 % Custom packages
 \RequirePackage{autocontent}
 
@@ -749,6 +740,30 @@
       %single arrow head extend=0.06mm,
   }%
 }
+
+\RequirePackage{atbegshi}
+
+\makeatletter
+  \if@showtodos
+    \setlength{\marginparwidth}{2cm}
+    \paperwidth=\dimexpr \paperwidth + 6cm\relax
+    \marginparwidth=5.4cm
+    \marginparsep=1.7cm
+    \RequirePackage[textwidth=\marginparwidth]{todonotes}
+    \AtBeginShipout{
+      \AtBeginShipoutUpperLeft{
+        \begin{tikzpicture}[remember picture,overlay,scale=-1,shift=(current page.north east)]
+          \fill[fill=black!2] (0,0) rectangle (\marginparwidth + 0.6cm,\paperheight);
+          \draw[draw=black!20] (\marginparwidth + 0.6cm,0) -- ++(0,\paperheight);
+        \end{tikzpicture}
+      }
+    }
+  \else
+    \RequirePackage[disable]{todonotes}
+  \fi
+\makeatother
+
+
 
 \newcommand{\markquestionend}{
   \tikzmark{qend}

@@ -1,4 +1,5 @@
 \lchapter[platform]{Platform Strategy}
+{
 
 % 5. (25%) Reflect on the discussion of product platforms as it relates to your project.
 % Do you foresee having to develop a product platform with multiple products (or configurations) to be successful?
@@ -30,3 +31,77 @@
 %   - No discussion of what variety is demanded by the market
 %   - No discussion of architectural stability
 %   - No discussion of how to approach product/system evolution
+
+% A product platform strategy is appropriate for the latency improvement program, but only if it is framed as a disciplined, multi-generation architectural program rather than as broad part commonality or a generic cost-reduction initiative. Airbus already offers the ARROW450 as a standardized, low-cost, high-margin bus upon which customers integrate their payloads. The question is therefore not whether to “create” a platform, but whether to extend and govern that platform over a 15-year horizon to support latency-tiered variants with controlled hardware evolution and backward-compatible interfaces.
+% 
+% Strategic Intent for the Platform
+% 
+% The primary strategic intent is to sustain return on investment for a latency-enabled architecture while expanding Airbus’s role from commodity bus supplier to mission-performance enabler. Achieving single-digit latency requires significant non-recurring engineering in routing logic, protocol stacks, encryption frameworks, and potentially inter-satellite communication integration. Without a multi-generation plan, that investment would be amortized over a single constellation cycle of approximately five years, which is insufficient. The platform therefore provides a mechanism to spread architectural investment over three constellation refresh cycles while preserving Airbus’s low-cost positioning. A secondary intent is to support government customers who procure multiple constellations over time and benefit from architectural continuity across programs.
+% 
+% Market Segment Definitions
+% 
+% The relevant market is not all space systems, but low Earth orbit optical constellations in the 500–700 km regime. Within this domain, three segments justify differentiated latency characteristics. Commercial Earth observation missions are highly cost sensitive and tolerate moderate latency. Disaster response and environmental monitoring missions require sub-10-minute latency but remain budget constrained. Defense ISR and missile warning missions require the lowest achievable latency and are less price sensitive, though still volume limited. These segments do not differ in payload integration, which remains fully flexible as in the current ARROW450 offering, but they differ in latency performance requirements, communications topology, and onboard processing sophistication. That structured variation is predictable and can therefore be planned against, satisfying the core condition for platforming.
+% 
+% Commonality Impact on Operators
+% 
+% Unlike automotive or rail platforms, in-orbit maintenance and spare pooling provide little benefit because satellites are not serviceable once deployed. The primary operator benefits instead arise from interface stability and ground segment reuse. Government customers frequently operate overlapping constellations with staggered launch schedules. A backward-compatible bus architecture reduces integration friction, simplifies verification and validation, and allows a ground installation to support multiple satellite generations. Ground infrastructure may remain in service longer than five years and can be upgraded in situ; stable protocols and APIs ensure that new satellites interoperate with existing ground systems. This continuity lowers lifecycle risk and reduces repeated certification or integration efforts, creating tangible value for operators.
+% 
+% Definition of Expected Customization and Differentiation
+% 
+% Customization is primarily performance based and focused on latency characteristics. Payload integration remains fully flexible and customer driven, as is currently the case. Differentiation across market segments occurs through communications modules, routing sophistication, and onboard processing tiers rather than through structural or power subsystem redesign. A baseline variant may rely on direct-to-ground X-band downlink with minimal onboard processing. An enhanced variant may include dynamic routing and task-triggered processing. A low-latency variant may integrate inter-satellite links and higher compute density. All variants share a common architectural core and physical interface envelope, ensuring that differentiation is modular rather than structural. This prevents uncontrolled divergence while preserving customer-relevant performance distinctions.
+% 
+% Simple Financial Model and Targets
+% 
+% A simplified financial model assumes three hardware generations over 15 years, each supporting approximately two constellation cycles. Assume 20 satellites per constellation and two constellations per five-year cycle across segments, yielding roughly 120 units over 15 years. If latency architecture development requires an incremental $30–40 million in non-recurring engineering across the initial generation, amortization over 120 units implies $0.25–0.35 million per unit before learning-curve effects. Controlled hardware reuse and supplier continuity reduce qualification and tooling costs in later generations. Target outcomes would include maintaining early-unit production cost within ±10 percent of current ARROW450 levels, while enabling higher-margin latency variants that command modest price premiums in defense or time-critical segments. These assumptions are illustrative and would require refinement, but they demonstrate that multi-generation reuse is essential to preserving margin.
+% 
+% Market Variant Plan and Volumes
+% 
+% Within each hardware generation, three variants are envisioned: baseline, enhanced, and low-latency. Commercial missions may primarily select the baseline variant, disaster-response missions the enhanced variant, and defense missions the low-latency variant. Over a 15-year period, volumes are expected to remain highest in the cost-sensitive baseline tier, with lower but higher-margin volumes in advanced tiers. Because each generation remains backward compatible for at least five years, overlapping constellations can coexist without architectural fragmentation. The variant plan therefore balances volume-driven cost control with selective performance differentiation.
+% 
+% Planning Horizon and Architectural Stability
+% 
+% The planning horizon should not exceed 15 years, as communications, optical link technologies, and onboard processing evolve rapidly. Within that horizon, hardware refresh intervals of three to five years allow performance improvements while preserving architectural continuity. Stability must be enforced at the interface level: mechanical envelopes, electrical and data bus definitions, encryption frameworks, and protocol abstractions remain fixed for the duration of the platform. Internal implementations, silicon choices, and bandwidth capacity may evolve. Each new generation must remain compatible with satellites deployed within the previous five years, creating a rolling compatibility window that aligns with constellation lifecycles.
+% 
+% Sharing Strategy
+% 
+% Sharing occurs at the architectural and interface level rather than through indiscriminate part commonality. Shared elements include the bus structural envelope, power and data architecture, communication and routing protocol layers, encryption frameworks, and ground-facing APIs. Modular communications and compute units enable differentiated latency performance without altering core integration boundaries. This approach preserves economies of scale in manufacturing processes, supplier relationships, and system qualification, while allowing controlled evolution of performance-critical subsystems. The result is a governed platform that balances stability and adaptability.
+% 
+% In summary, a 15-year, interface-governed extension of the ARROW450 platform enables Airbus to realize return on latency architecture investment, maintain low-cost bus economics, and provide structured performance differentiation aligned with identifiable market segments. By stabilizing interfaces while allowing modular hardware evolution every three to five years, Airbus can support overlapping constellation lifecycles, protect margins, and position itself as a long-term architectural partner rather than a commodity component supplier.
+
+
+A product platform strategy is appropriate for Airbus' latency improvement program if it is framed as a governed, multi-generation architectural extension of the existing ARROW platform rather than as generic part sharing.
+
+\subsubsection{Strategic Intent for the Platform}
+
+The ARROW platform is positioned as ``Versatile by Design'', modular, scalable, and cost-effective through serial production and COTS-based supply chains \cite{arrow_brochure}. The objective is therefore not to create a new platform, but to govern its evolution over a 15-year horizon by integrating latency-optimizing capabilities while preserving its low-cost identity. Achieving single-digit-minute latency requires substantial non-recurring engineering in routing logic, protocol stacks, modular communications integration, and interface governance. Without a multi-generation strategy, this investment would be amortized over a single five-year constellation cycle, reducing financial return. The platform enables \gls{roi} across three refresh cycles while expanding ARROW's applicability to latency-sensitive missions and increasing revenue potential.
+
+\subsubsection{Market Segment Definitions}
+
+The relevant market is LEO constellations with a minimum scale of approximately 20 satellites. Latency requirements differ predictably across segments. Commercial Earth Observation missions are highly cost sensitive and tolerate moderate latency. Disaster response missions require sub-10-minute latency under budget constraints. Defense ISR and missile tracking demand minimal latency and are less price sensitive but lower in volume.
+%This structured variation supports performance-tier differentiation within a common architecture.
+
+\subsubsection{Commonality Impact on Operators}
+
+In-orbit maintenance and spare pooling provide little benefit once satellites are deployed. Commonality instead reduces certification scope, integration risk, and time-to-market. A stable, interface-governed architecture limits requalification to incremental changes and provides operators with flight-proven configurations, increasing confidence in mission-critical subsystems. Compatibility across staggered deployments enables interoperability between generations and preserves integration with existing ground infrastructure. Because ground systems outlive spacecraft and can be upgraded in situ, stable interfaces reduce redesign effort, simplify maintenance, and lower lifecycle cost. Operator benefit derives primarily from certification efficiency, deployment speed, interoperability, and ground economics.
+
+\subsubsection{Expected Customization and Differentiation}
+
+Customization is performance-based and focused on latency characteristics, while payload integration remains fully flexible under ARROW's modular design. Differentiation occurs through communications modules, routing intelligence, and processing tiers. Optional wideband Ka-band links and optical inter-satellite links \cite{arrow_brochure} directly enable latency-tier configurations: baseline direct-to-ground downlink, enhanced high-bandwidth routing, and low-latency inter-satellite connectivity. Structural envelope, power architecture, and interface definitions remain common to prevent divergence and re-engineering efforts.
+
+\subsubsection{Financial Model and Targets}
+\todo{I have a rough financial model that I will put in an appendix and then rewrite this section. Ignore the content here for now.}
+The platform introduces a premium through latency architecture development, compatibility validation, and interface governance. Assuming incremental NRE on the order of tens of millions of dollars, amortization over three generations and sufficient production volume keeps per-unit impact manageable. ARROW's serial production and COTS-based scaling depend on stable mechanical and electrical interfaces; frequent architectural resets would erode learning effects and qualification reuse. The strategy accepts bounded overperformance. Freezing interface envelopes for 15 years may create excess mass, power, or computational margin, and backward compatibility may retain legacy protocol support.
+%These inefficiencies are the cost of preserving architectural continuity and multi-generation amortization. 
+%Governance must prevent high-end requirements from inflating cost-sensitive variants, while allowing internal efficiency improvements within fixed interfaces.
+
+\subsubsection{Market Variant Plan and Volumes}
+
+Each hardware generation includes baseline, enhanced, and low-latency configurations. Commercial missions dominate baseline volume, while disaster-response and defense missions drive higher-margin advanced tiers. With production capabilities of up to 15 satellites per week \cite{arrow_brochure}, sustained serial output could exceed 3,000 units over 15 years, strengthening the financial case for platform continuity.
+
+\subsubsection{Planning Horizon and Architectural Stability}
+
+The planning horizon is limited to 15 years due to evolving communications and processing technologies. Backward-compatible refresh cycles of three to five years allow incremental improvement without destabilizing the architecture. Interface-level stability is enforced across structural envelope, power and data buses, and routing abstractions. Internal implementations and bandwidth capacity remain free to evolve within these fixed boundaries, and each generation supports systems deployed within the previous five years.
+
+\subsubsection{Sharing Strategy}
+
+Sharing occurs primarily at the architectural and interface level. Common elements include the structural bus envelope, electrical and data architecture, communication protocols, routing abstractions, and ground-facing APIs. Modular communications and compute packages enable latency differentiation without altering integration boundaries. Stabilizing interfaces over a 15-year program while refreshing hardware internally every three to five years preserves ARROW's scale advantages and enables a controlled, economically coherent extension of the platform in service of long-term \gls{roi}.
