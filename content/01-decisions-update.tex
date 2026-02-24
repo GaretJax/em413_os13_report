@@ -38,3 +38,69 @@
 % * Decisions that aren't within the architect's control.
 % * Decisions aren't sensitive or connected.
 % * Too many decisions to possibly all be architectural in nature (e.g., more than 10).
+\begin{table}[h!]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1.3}
+\caption{Concept Morphological Matrix}
+\begin{tabular}{|p{1.3cm}|p{2.0cm}|p{1.8cm}|p{1.8cm}|p{1.8cm}|p{1.8cm}|p{1.5cm}|p{1.5cm}|}
+\hline
+\textbf{ID} & 
+\textbf{Architectural Decision} & 
+\textbf{Option A} & 
+\textbf{Option B} & 
+\textbf{Option C} & 
+\textbf{Option D} & 
+\textbf{Traceability} & 
+\textbf{Status of Decision } \\
+\hline
+AD-01 & On-board Autonomous Target Recognition (ATR) & None & Task-Triggered & Continuous & - & (PSF-3,
+FR-007) & Open \\
+\hline
+AD-02 & Data Path & Direct to Ground & LEO-LEO Internal Relay Mesh & LEO-LEO 3rd Party Relay Mesh & LEO-GEO External Relay & (PSF-5
+FR-005
+FR-006)
+& Open \\
+\hline
+AD-03 & Information Product & Full Image Only & Snippet/ Thumbnail & Metadata & - & (PSF-4) & Open \\
+\hline
+AD-04.1 & Uplink Communication & Optical Laser & X-Band Radio Frequency & *Ka-Band* S-Band Radio Frequency & - & (FR-005, FR-006, NFR-02)& Updated \\
+\hline
+AD-04.2 &  Downlink Communication & Optical Laser & X-Band Radio Frequency & Ka-Band Radio Frequency & None (External Relay Downlink) & (FR-005
+FR-006
+NFR-02)
+ & Open  \\
+\hline
+AD-04.3 & Inter-satellite Communication & Optical Laser & X-Band Radio Frequency & Ka-Band Radio Frequency & None & (FR-005
+FR-006
+NFR-02)
+ & Open \\
+\hline
+AD-05 & Data Routing Protocol & Static Pre-Scheduled & Adaptive Dynamic Mesh & Store and Forward & - & (PSF-5
+NFR-01
+NFR-02)
+ & Open \\
+\hline
+AD-06 & Ground Segment Network & Dedicated Sovereign Network & Commercial GSaaS (e.g. KSAT/AWS) & Hybrid (Sovereign + Commercial) & - & (PSF-5
+FR-006
+NFR-01)
+ & New \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\textbf{TO} enable global decision making through persistent, low-latency space-based data
+
+\textbf{BY} dynamically routing data through a networked constellation to bypass terrestrial infrastructure limitations
+
+\textbf{USING} a networked pLEO constellation architecture.
+
+\vspace{0.5em}
+After speaking with our sponsors since OS11, we have moved Orbit and Ground Segment from fixed assumptions to architectural decisions (AD-06/07) to better address end-to-end latency.  Additional feedback and discussion with our sponsor led us to update AD-04.1 (Uplink Comms) from Ka-Band to S/X-band in order to prioritize link reliability over data size for uplink. Further, our architectural decision set has been refined to better reflect the structural drivers required to satisfy our SPS. The most consequential update is elevating the data path (AD-02) to the architectural anchor. 
+SPS Justification:
+Data Volume Reduction (AD-01, AD-03): These ADs satisfy the “low-latency” requirement by minimizing the number of bits transmitted, thereby bypassing bandwidth bottlenecks.
+Network Optimization: (AD-02, AD-05, AD-06): These ADs enable “bypassing terrestrial infrastructure limitations” by using an adaptive mesh and strategic ground entry points to find the fastest path to the end-user.
+Persistent Coverage (AD-07): Satisfies the “persistent” requirement of the SPS by selecting an orbital shell that ensures constant satellite availability over target areas. 
+
+The identified architectural decisions (AD-01 through AD-07) represent the complete set of technical levers required to satisfy the SPS. No additional architectural lever meaningfully influences latency without falling into implementation detail. Therefore, this set is sufficient to bound the tradespace while avoiding premature technology commitment. To achieve low-latency, the architecture allows for trading on-board processing levels (AD-01, AD-03) to minimize data volume before it ever hits the downlink bottleneck. To bypass terrestrial limitations, the tradespace includes multiple networking and routing configurations (AD-02, AD-05) that enable the system to find the optimal path to the end-user, regardless of local ground station availability. Persistence is addressed by making the orbital shell and ground network architecture explicit decisions (AD-07, AD-06); this allows the team to optimize the geometric relationship between satellites and ground entry points to minimize "waiting time". Finally, by treating uplink communication (AD-04.1) as an open decision focused on S/X-Band reliability over raw speed, the architecture ensures the persistent availability of the command-and-control link under diverse atmospheric conditions. Collectively, these open decisions provide the necessary degrees of freedom to converge on a design that satisfies the rigorous latency and persistence requirements of the project. Therefore, at this stage, most decisions remain open as the team enters tradespace exploration. 
