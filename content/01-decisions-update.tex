@@ -38,56 +38,11 @@
 % * Decisions that aren't within the architect's control.
 % * Decisions aren't sensitive or connected.
 % * Too many decisions to possibly all be architectural in nature (e.g., more than 10).
-\begin{table}[h!]
-\centering
-\footnotesize
-\renewcommand{\arraystretch}{1.3}
-\caption{Concept Morphological Matrix}
-\begin{tabular}{|p{1.3cm}|p{2.0cm}|p{1.8cm}|p{1.8cm}|p{1.8cm}|p{1.8cm}|p{1.5cm}|p{1.5cm}|}
-\hline
-\textbf{ID} & 
-\textbf{Architectural Decision} & 
-\textbf{Option A} & 
-\textbf{Option B} & 
-\textbf{Option C} & 
-\textbf{Option D} & 
-\textbf{Traceability} & 
-\textbf{Status of Decision } \\
-\hline
-AD-01 & On-board Autonomous Target Recognition (ATR) & None & Task-Triggered & Continuous & - & (PSF-3,
-FR-007) & Open \\
-\hline
-AD-02 & Data Path & Direct to Ground & LEO-LEO Internal Relay Mesh & LEO-LEO 3rd Party Relay Mesh & LEO-GEO External Relay & (PSF-5
-FR-005
-FR-006)
-& Open \\
-\hline
-AD-03 & Information Product & Full Image Only & Snippet/ Thumbnail & Metadata & - & (PSF-4) & Open \\
-\hline
-AD-04.1 & Uplink Communication & Optical Laser & X-Band Radio Frequency & *Ka-Band* S-Band Radio Frequency & - & (FR-005, FR-006, NFR-02)& Updated \\
-\hline
-AD-04.2 &  Downlink Communication & Optical Laser & X-Band Radio Frequency & Ka-Band Radio Frequency & None (External Relay Downlink) & (FR-005
-FR-006
-NFR-02)
- & Open  \\
-\hline
-AD-04.3 & Inter-satellite Communication & Optical Laser & X-Band Radio Frequency & Ka-Band Radio Frequency & None & (FR-005
-FR-006
-NFR-02)
- & Open \\
-\hline
-AD-05 & Data Routing Protocol & Static Pre-Scheduled & Adaptive Dynamic Mesh & Store and Forward & - & (PSF-5
-NFR-01
-NFR-02)
- & Open \\
-\hline
-AD-06 & Ground Segment Network & Dedicated Sovereign Network & Commercial GSaaS (e.g. KSAT/AWS) & Hybrid (Sovereign + Commercial) & - & (PSF-5
-FR-006
-NFR-01)
- & New \\
-\hline
 
-\end{tabular}
+\begin{table}[h!]
+  \caption{Morphological matrix, including past design solutions and updated architectural decisions.}
+  \label{tbl:decisions}
+  \input{tables/decisions}
 \end{table}
 
 \textbf{TO} enable global decision making through persistent, low-latency space-based data

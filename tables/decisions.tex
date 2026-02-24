@@ -1,6 +1,135 @@
-\small
-\begin{tabularx}{\linewidth}{@{} l E{2cm} E{1.5cm} X X X X @{}}
-  \toprule
-    \includescript{python ./scripts/cache-exec.py python ./scripts/render-table.py assets/decisions.csv --no-skip-headers -r 0:wrap:Th --no-bb --skip-cols=Rationale}
-  \bottomrule
-\end{tabularx}
+\footnotesize
+
+\newcounter{rownumber}
+
+\newcommand{\row}[9]{
+  \stepcounter{rownumber}
+  \textbf{#1}
+  \textit{
+    \scriptsize
+    \ifstrequal{#2}{form}{Form}{}
+    \ifstrequal{#2}{func}{Function}{}
+    \ifstrequal{#2}{f2f}{F2F}{}
+  }
+  &
+  #3 &
+  #4 &
+  #5 &
+  #6 &
+  \ifstrequal{#7}{-}{\cellcolor{black!8}\;}{#7} &
+  {\scriptsize\StrSubstitute{#8}{,}{\newline}} &
+  \ifstrequal{#9}{Open}{\cellcolor{Snow1}}{}
+  \ifstrequal{#9}{Updated}{\cellcolor{SlateGray1}}{}
+  \ifstrequal{#9}{New}{\cellcolor{Khaki1}}{}
+  #9 \\
+}
+
+\renewcommand{\arraystretch}{1.4}
+\setlength{\tabcolsep}{4pt}
+\definecolor{iridiumyellow}{HTML}{F3B207}
+\definecolor{onewebblue}{HTML}{57BEF2}
+%\renewcommand{\tabularxcolumn}[1]{m{#1}}
+
+\begin{NiceTabularX}{\linewidth}{ %
+    | >{\setstretch{1}\raggedright\arraybackslash}m{12mm} %
+    | >{\setstretch{1}\raggedright\arraybackslash}m{32mm} %
+    | *{4}{>{\centering\arraybackslash}X[m]|} %
+      M{9mm} %
+    | M{11mm} | %
+  }[color-inside]
+  \hline
+    \Th{ID} &
+    \Th{Architectural Decision} &
+    \Th{Option A} &
+    \Th{Option B} &
+    \Th{Option C} &
+    \Th{Option D} &
+    \Th{Trac.} &
+    \Th{Status} \\
+  \hline
+    \row{AD-01}{func}{On-board Autonomous Target Recognition (ATR)}{None}{Task-Triggered}{Continuous}{-}{PSF-3, FR-007}{Open}
+  \hline
+    \row{AD-02}{f2f}{Data Path}{Direct to Ground}{LEO-LEO Internal Relay Mesh}{LEO-LEO 3rd Party Relay Mesh}{LEO-GEO External Relay}{PSF-5, FR-005, FR-006}{Open}
+  \hline
+    \row{AD-03}{func}{Information Product}{Full Image Only}{Snippet/ Thumbnail}{Metadata}{-}{PSF-4}{Open}
+  \hline
+    \row{AD-04.1}{form}{Uplink Communication}{Optical Laser}{X-Band RF}{\sout{Ka-Band}
+
+    S-Band RF}{-}{FR-005, FR-006, NFR-02}{Updated}
+  \hline
+    \row{AD-04.2}{form}{ Downlink Communication}{Optical Laser}{X-Band RF}{Ka-Band RF}{None (external Relay Downlink)}{FR-005, FR-006, NFR-02}{Open}
+  \hline
+    \row{AD-04.3}{form}{Inter-satellite Communication}{Optical Laser}{X-Band RF}{Ka-Band RF}{None}{FR-005, FR-006, NFR-02}{Open}
+  \hline
+    \row{AD-05}{f2f}{Data Routing Protocol}{Static Pre-Scheduled}{Adaptive Dynamic Mesh}{Store and Forward}{-}{PSF-5, NFR-01, NFR-02}{Open}
+  \hline
+    \row{AD-06}{form}{Ground Segment Network}{Dedicated Sovereign Network}{Commercial GSaaS (\eg KSAT/AWS)}{Hybrid (Sovereign + Commercial)}{-}{PSF-5, FR-006, NFR-01}{New}
+  \hline
+\CodeAfter
+  \tikz[remember picture, overlay]{
+    % Iridium
+    \draw[
+      iridiumyellow,
+      yshift=0mm,
+      line width=0.8pt,
+      mark=*,
+      mark size=1.8pt,
+      mark options={solid},
+    ] plot coordinates {
+      ([yshift=0mm]2-3.south west) % None
+      ([yshift=0mm]3-4.south west) % LEO-LEO
+      ([xshift=4mm]4-6.south west) % n/a (voice)
+      ([xshift=4mm]5-6.north west) % n/a (Ka-Band)
+      ([yshift=0mm]6-5.north west) % Ka-Band
+      ([yshift=0mm]7-5.north west) % Ka-Band
+      ([yshift=-1mm]8-4.west) % Mesh
+      ([yshift=0mm]9-3.north) % Dedicated
+    };
+    \node[xshift=4mm,right,iridiumyellow!70!Sienna4,font=\tiny] at (4-6.south west) {Data (voice)};
+    \node[xshift=4mm,right,iridiumyellow!70!Sienna4,font=\tiny] at (5-6.north west) {Ka-Band RF};
+
+    % OneWeb
+    \draw[
+      onewebblue,
+      yshift=0mm,
+      line width=0.8pt,
+      mark=*,
+      mark size=1.8pt,
+      mark options={solid},
+    ] plot coordinates {
+      ([yshift=0mm]2-3.south east) % None
+      ([yshift=1.8mm]3-3.east) % Direct to ground
+      ([xshift=0mm]4-6.north west) % n/a (data)
+      ([xshift=0mm]5-6.south west) % Ka-Band
+      ([yshift=0mm]6-5.south east) % Ka-Band
+      ([yshift=0mm]7-6.west) % None
+      ([yshift=0mm]8-3.south east) % Fixed
+      ([yshift=0mm]9-5.south west) % Mixed
+    };
+    \node[yshift=0mm,xshift=0mm,right,onewebblue!70!Turquoise4,font=\tiny] at (4-6.north west) {Data (internet)};
+    \node[xshift=0mm,right,onewebblue!70!Turquoise4,font=\tiny] at (5-6.south west) {Ka-Band RF};
+
+    % Starlink
+    \draw[
+      red,
+      yshift=0mm,
+      line width=0.8pt,
+      mark=*,
+      mark size=1.8pt,
+      mark options={solid},
+    ] plot coordinates {
+      ([yshift=0mm]2-3.north east) % None
+      ([yshift=0mm]3-4.north east) % LEO-LEO
+      ([yshift=0mm]4-6.north east) % n/a (data)
+      ([yshift=-1.8mm]5-6.south east) % Ka-Band
+      ([yshift=0mm]6-5.north east) % Ka-Band
+      ([yshift=0mm]7-3.east) % Laser
+      ([yshift=0mm]8-4.north west) % Mesh
+      ([yshift=0mm]9-3.north west) % Dedicated
+    };
+    \node[yshift=0mm,xshift=0mm,below left,red,font=\tiny] at (4-6.north east) {Data (internet)};
+    \node[yshift=-1.8mm,above left,red,font=\tiny] at (5-6.south east) {Ka-Band RF};
+
+  }%
+\end{NiceTabularX}
+

@@ -11,7 +11,7 @@
 
 \LoadClass[10pt,oneside]{book}
 \RequirePackage{etoolbox}
-\usepackage[dvipsnames,table]{xcolor}
+\usepackage[dvipsnames,x11names,table]{xcolor}
 
 % Layout definition
 \RequirePackage{geometry}
@@ -303,6 +303,7 @@
 \RequirePackage{longtable} % Support for tables spawning multiple pages,
                        % captions and footnotes.
                        % Does not work in multicolumn environments
+\RequirePackage{nicematrix}
 % Define new tabularx column types:
 %  - R: streteched right aligned
 %  - C: stretched centered
@@ -312,6 +313,7 @@
 \newcolumntype{I}[1]{>{\raggedleft\arraybackslash}p{#1}}%
 \newcolumntype{C}{>{\centering\arraybackslash}X}%
 \newcolumntype{N}[1]{>{\centering\arraybackslash}p{#1}}%
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}%
 \renewcommand{\arraystretch}{1.1} % Set row height multiplicator
 \aboverulesep = 0.4ex
 \belowrulesep = 0.5ex
@@ -504,6 +506,7 @@
 \usetikzlibrary{tikzmark}
 \usetikzlibrary{decorations.pathreplacing}
 \usetikzlibrary{decorations.text}
+\usetikzlibrary{decorations.markings}
 \usetikzlibrary{fadings}
 \usetikzlibrary{intersections}
 \usetikzlibrary{math}
@@ -764,10 +767,11 @@
 \makeatother
 
 
-
 \newcommand{\markquestionend}{
   \tikzmark{qend}
 }
+
+\usepackage{xstring}
 
 \input{glossary.gls}
 \input{stakeholders.tex}
