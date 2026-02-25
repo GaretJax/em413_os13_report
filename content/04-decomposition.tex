@@ -89,13 +89,13 @@ The initial functional decomposition was derived directly from the project Conce
 
 \noindent Functions are grouped according to temporal handoffs \textit{(e.g., what comes next?)}, making this view effective for understanding end-to-end performance flow. The CONOP-based decomposition therefore provides strong insight into system behavior and execution sequencing, though architectural ownership boundaries remain less explicit.
 
-Because Level I followed the CONOP, the operational perspective influenced not only grouping but also how Level II functions were defined and named.
+Because Level I followed the CONOP, the operational perspective influenced not only the grouping but also the definition and naming of Level II functions.
 Functions framed around mission phases emphasized sequential behavior over persistent system responsibilities, shaping interpretation of relationships and how dependencies were represented within the DSM.
-This was evident in the team's difficulty clustering the initial DSM, which yielded diffused, waterfalled clusters.
+This was evident in the team's difficulty clustering the initial DSM, which yielded diffused, waterfalled ``clusters''.
 
 \subsubsection{Reevaluation Approach}
-\todo{Add Ref to "DSM Editor"}
-Because of the size and density of the DSM, manual inspection alone made it difficult to identify clustering patterns, particularly when influenced by the Initial Level I perspective. The team therefore leveraged DSM analysis tooling to support clustering and visualization. Automated clustering enabled clearer observation of tightly coupled functional groupings and supported comparison between the CONOP-based decomposition and alternative architectural partitionings.
+Because of the size and density of the DSM, manual inspection alone made it difficult to identify clustering patterns, particularly when influenced by the Initial Level I perspective. The team therefore leveraged DSM analysis tooling to support clustering and visualization \cite{dsm_editor_2024}.
+Automated clustering enabled clearer observation of tightly coupled functional groupings and supported comparison between the CONOP-based decomposition and alternative architectural partitionings.
 
 \subsubsection{Revised Level I Decomposition}
 Reclustering of the DSM revealed clearer functional groupings than those observed under the CONOP-based decomposition, with strong coupling emerging among data processing, coordination logic, and communication-like functions. Many dependencies previously interpreted as sequential mission handoffs were instead identified as interface-driven interactions with both internal and external platform systems. These observations expose architectural boundaries that remain stable across operational scenarios and more accurately reflect how responsibilities are sustained within the system.
