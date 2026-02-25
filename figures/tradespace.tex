@@ -1,98 +1,133 @@
+\centering
+
 \begin{tikzpicture}
-\begin{axis}[
-  width=10cm,
-  height=8cm,
-  xmin=1, xmax=5,
-  ymin=1, ymax=5,
-  xtick={1,2,3,4,5},
-  ytick={1,2,3,4,5},
-  xlabel={Cost (1..5, 5 best)},
-  ylabel={Latency (1..5, 5 best)},
-  grid=both,
-  major grid style={line width=0.2pt},
-  minor tick num=1,
-  clip=false, % so labels can sit outside
-]
+  \begin{axis}[
+    width=14cm,
+    height=9cm,
+    xmin=0.4, xmax=5.6,
+    ymin=0.4, ymax=5.6,
+    xtick={1,2,3,4,5},
+    ytick={1,2,3,4,5},
+    xlabel={Cost},
+    ylabel={Latency},
+    grid=none,
+    major grid style={line width=0.2pt},
+    minor tick num=0,
+    clip=false, % so labels can sit outsidea
+    tick label style={
+      font=\footnotesize,
+      /pgf/number format/assume math mode=true,
+    },
+    label style={font=\footnotesize},            % axis labels
+  ]
 
-% --- All candidates: (x,y) with label
-% Format: (x,y)[label]
-\addplot[
-  only marks,
-  mark=*,
-  mark size=2.2pt,
-] coordinates {
-  (4, 1) [C-01]
-  (4, 2) [C-02]
-  (3, 2) [C-03]
-  (3, 3) [C-04]
-  (3, 4) [C-05]
-  (4, 4) [C-06]
-  (2, 4) [C-07]
-  (1, 5) [C-08]
-  (5, 3) [C-09]
-  (3, 3) [C-10]
-  (3, 2) [R-01]
-  (2, 3) [R-02]
-  (1, 5) [R-03]
-};
+  % --- Pareto front: list in the order you want connected
+  \addplot[
+    thick,
+    color=red,
+  ] coordinates {
+    %(4, 1) [C-01]
+    %(4, 2) [C-02]
+    %(3, 2) [C-03]
+    %(3, 3) [C-04]
+    %(3, 4) [C-05]
+    %(2, 4) [C-07]
+    (1, 5) [C-08]
+    (4, 4) [C-06]
+    (5, 3) [C-09]
+    %(3, 3) [C-12]
+    %(3, 2) [R-01]
+    %(2, 3) [R-02]
+    %(1, 5) [R-03]
+  };
 
-% Labels for all points
-\addplot[
-  only marks,
-  mark=none,
-  nodes near coords,
-  point meta=explicit symbolic,
-  nodes near coords style={
-    font=\scriptsize,
-    anchor=west,
-    xshift=2pt,
-    yshift=1pt,
-  },
-] coordinates {
-  (4, 1) [C-01]
-  (4, 2) [C-02]
-  (3, 2) [C-03]
-  (3, 3) [C-04]
-  (3, 4) [C-05]
-  (4, 4) [C-06]
-  (2, 4) [C-07]
-  (1, 5) [C-08]
-  (5, 3) [C-09]
-  (3, 3) [C-10]
-  (3, 2) [R-01]
-  (2, 3) [R-02]
-  (1, 5) [R-03]
-};
+  % --- All candidates: (x,y) with label
+  % Format: (x,y)[label]
+  \addplot[
+    only marks,
+    mark=*,
+    mark size=2.2pt,
+  ] coordinates {
+    (4, 1) [C-01]
+    (4, 2) [C-02]
+    (3, 2) [C-03]
+    (3, 3) [C-04]
+    (3, 4) [C-05]
+    (4, 4) [C-06]
+    (2, 4) [C-07]
+    (1, 5) [C-08]
+    (5, 3) [C-09]
+    (3, 3) [C-10]
+    (3, 2) [R-01]
+    (2, 3) [R-02]
+    (1, 5) [R-03]
+  };
 
-% --- Pareto front: list in the order you want connected
-\addplot[
-  thick,
-  mark=*,
-  mark size=2.2pt,
-] coordinates {
-  %(4, 1) [C-01]
-  %(4, 2) [C-02]
-  %(3, 2) [C-03]
-  %(3, 3) [C-04]
-  %(3, 4) [C-05]
-  %(2, 4) [C-07]
-  (1, 5) [C-08]
-  (4, 4) [C-06]
-  (5, 3) [C-09]
-  %(3, 3) [C-12]
-  %(3, 2) [R-01]
-  %(2, 3) [R-02]
-  %(1, 5) [R-03]
-};
+  % Labels for all points
+  \addplot[
+    only marks,
+    mark=none,
+    nodes near coords,
+    point meta=explicit symbolic,
+    nodes near coords style={
+      font=\scriptsize,
+      anchor=south west,
+      xshift=2pt,
+      yshift=0pt,
+    },
+  ] coordinates {
+    (1, 5) [R-03]
+    (2, 3) [R-02]
+    (2, 4) [C-07]
+    (3, 2) [R-01]
+    (3, 3) [C-10]
+    (4, 1) [C-01]
+    (4, 2) [C-02]
+    (4, 4) [C-06]
+    (5, 3) [C-09]
+  };
+  \addplot[
+    only marks,
+    mark=none,
+    nodes near coords,
+    point meta=explicit symbolic,
+    nodes near coords style={
+      font=\scriptsize,
+      anchor=north east,
+      xshift=-2pt,
+      yshift=1pt,
+    },
+  ] coordinates {
+    (1, 5) [C-08]
+  };
+  \addplot[
+    only marks,
+    mark=none,
+    nodes near coords,
+    point meta=explicit symbolic,
+    nodes near coords style={
+      font=\scriptsize,
+      anchor=north west,
+      xshift=2pt,
+      yshift=1pt,
+    },
+  ] coordinates {
+    (3, 2) [C-03]
+    (3, 3) [C-04]
+    (3, 4) [C-05]
+  };
 
-% --- Utopia point (5,5) as a star
-\addplot[
-  only marks,
-  mark=star,
-  mark size=3.0pt,
-] coordinates {(5,5)};
+  \node[
+    star,
+    star points=5,
+    star point ratio=2.5,
+    fill=yellow!90!orange,
+    draw=black,
+    line width=0.5pt,
+    minimum size=5mm,
+    inner sep=0pt,
+  ] at (axis cs:5,5) {};
+  \node[font=\scriptsize, anchor=west, align=left, text width=10mm, xshift=2mm] at (axis cs:5,5) {Utopia point};
 
-\node[font=\scriptsize, anchor=south west] at (axis cs:5,5) {Utopia};
-
-\end{axis}
+  \end{axis}
 \end{tikzpicture}
