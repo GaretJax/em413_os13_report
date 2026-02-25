@@ -64,6 +64,35 @@ Because of the size and density of the DSM, manual inspection alone made it diff
 \subsubsection{Revised Level I Decomposition}
 The revised Level-1 decomposition provides a different interpretation of the DSM by reorganizing functions according to persistent system responsibilities rather than operational sequence. When viewed through this structure, previously dispersed Level-2 functions form clearer clusters, revealing strong coupling between data management, onboard processing, and communications functions that was less apparent under the CONOP-based decomposition. This indicates that many dependencies observed in the DSM arise from shared resources and continuous coordination rather than sequential mission handoffs. As a result, the revised decomposition better aligns with the coupling structure identified through DSM clustering, exposing architectural boundaries that remain stable across operational scenarios. While the CONOP-based view is effective for understanding mission execution and latency flow, the revised responsibility-based decomposition is preferred because it more accurately reflects subsystem ownership, interface definition, and the underlying architectural organization of the system.
 
+\subsubsection{Selecting a Concept}
+Concept \textbf{C-06} was selected to explore decomposition because it represents the most architecturally integrated and complex configuration within the explored tradespace. As an architectural extreme, it exhibits high functional coupling, distributed decision-making, and continuous interaction among processing, networking, and resource management. Analyzing this concept was therefore expected to provide strong insight into architectural boundaries, decomposition strategies, and responsibility partitioning.
+
+\subsubsection{Initial Level I Decomposition Approach}
+
+The initial functional decomposition was derived directly from the project Concept of Operations (CONOP), organizing system behavior according to mission execution flow. This view emphasizes how sensing data progresses through the system from tasking through delivery, reflecting the operational sequence defined in the CONOP.
+
+\paragraph{Initial Level I Functional Structure:}
+\vspace{-2mm}
+\noindent
+\textit{Mission Planning \& Tasking $\rightarrow$
+Health \& Status Monitoring $\rightarrow$
+Data Acquisition $\rightarrow$
+Onboard Processing $\rightarrow$
+Satellite Networking \& Routing $\rightarrow$
+Downlinking}\\
+
+Functions are grouped according to temporal handoffs \textit{(e.g., what comes next?)}, making this view effective for understanding end-to-end performance flow. The CONOP-based decomposition therefore provides strong insight into system behavior and execution sequencing, though architectural ownership boundaries remain less explicit.
+\todo{Need to add refs.}
+
+Level II decompositions were derived from this structure (full Initial Level I DSM provided in Appendix NEED REF). Because Level I followed the CONOP, the operational perspective influenced not only grouping but also how Level II functions were defined and named. Functions framed around mission phases emphasized sequential behavior over persistent system responsibilities, shaping interpretation of relationships and how dependencies were represented within the DSM.
+
+\subsubsection{Reevaluation Approach}
+\todo{Add Red to "DSM Editor"}
+Because of the size and density of the DSM, manual inspection alone made it difficult to identify coupling patterns, particularly when influenced by the Initial Level I perspective. The team therefore leveraged DSM analysis tooling to support clustering and visualization. Automated clustering enabled clearer observation of tightly coupled functional groupings and supported comparison between the CONOP-based decomposition and alternative architectural partitionings.
+
+\subsubsection{Revised Level I Decomposition}
+The revised Level-1 decomposition reorganizes functions according to persistent system responsibilities rather than operational sequence, providing a different interpretation of the DSM. Under this structure, previously dispersed Level-2 functions form clearer clusters, revealing strong coupling between data management, onboard processing, and communications functions that was less visible in the CONOP-based view. This suggests many dependencies arise from shared resources and continuous coordination rather than sequential handoffs. The revised decomposition therefore aligns more closely with observed DSM coupling and exposes architectural boundaries that remain stable across operational scenarios. While the CONOP view remains effective for understanding mission execution and latency flow, the responsibility-based decomposition is preferred because it better reflects subsystem ownership, interface definition, and the system’s underlying architectural organization.
+
 %Evolution from CONOPs to Capability
 %Our initial trial decomposition was built around a CONOPs (Concept of Operations) view, mapping system functions chronologically according to mission execution flow. While this provided a clear operational narrative, it proved insufficient for capturing the unique complexities of C-06. The CONOPs view treated "Onboard Processing" and "Networking" as isolated, sequential steps, which obscured the reality that in a compute-mesh, these functions operate as a continuous, integrated feedback loop.
 %^this corresponds or complements what you are saying in initial level 1 functional structure^

@@ -26,38 +26,34 @@
 % * No articulation of how the future solutions may improve past designs.
 % * Misclassification of small (design-level) changes between past designs as architectural.
 
-\vspace{-0.75em}
 \textbf{1. Iridium (First Gen):} Launched in the 1990s, Iridium was the first to implement some of the current considered architectural levers to bypass terrestrial limits, making them the pioneer in using inter-satellite networking.
-\vspace{-0.75em}
+\vspace{-0.5em}
 \begin{itemize}[noitemsep]
 \item AD-02 (Data Path): LEO-LEO Internal Relay Mesh (fully meshed network): This was the first fully meshed commercial network where data was able to hop between satellites without needing a ground station for every pass.
 \item AD-04.3 (ISL): X-Band Radio Frequency: While optical links were considered, RF cross links were chosen because the tech was more mature at the time.
 \item AD-05 (Routing): Adaptive Dynamic Mesh: Research shows that early Iridium designs used static scheduling but was scrapped in favor of a dynamic approach to manage channel selection and routing late in the project.
-\item AD-07 (Orbit): Near-polar LEO planes (Walker-Star pattern): Consisted of 66 active satellites across six polar planes at ~781 km altitude with 86.4 deg inclination.
 \end{itemize}
 \vspace{-0.5em}
 %Iridium's architectural breakthrough was relocating routing responsibility from the ground segment to the space segment. This reduced terrestrial dependence and improved global continuity. Latency was improved structurally, though not optimized as a primary driver.  
 
 \vspace{0.5em}
 \textbf{2. OneWeb (First Gen):} These satellites were manufactured by Airbus (project sponsor) and provided the benchmark for mass-produced LEO platforms, making it an interesting legacy reference.
-\vspace{-0.75em}
+\vspace{-0.5em}
 \begin{itemize}[noitemsep]
 \item AD-02 (Data Path): Direct to Ground: Leverages a “bent-pipe architecture”, no inter-satellite links, where signals are received in the Ka-band and relayed directly to users in the Ka-band.
 \item AD-04.1 (Uplink): Employed steerable Ka-band spot beams for ground gateway communications.
 \item AD-06 (Ground Segment): Relied on a global network of third-party and dedicated ground stations to handle traffic (Commercial GSaaS network of ground stations)
-\item AD-07 (Orbit): Operates at 1,200 km with 648 satellites across 12 Polar orbital planes (LEO).
 \end{itemize}
 \vspace{-0.5em}
 %OneWeb reflects a deliberate architectural simplification, one where routing and processing remain centralized in the ground segment. Unlike Iridium and StarLink, OneWeb does not distribute routing intelligence across the constellation. This is not merely a technology difference but a fundamentally different architectural commitment, prioritizing manufacturing scalability and gateway density over in-space network autonomy.
 
 \vspace{0.5em}
 \textbf{3. SpaceX Starlink (Gen 1.5/2.0):} This is the currently available solution that our project design aims to improve upon in terms of price, latency, and autonomous recognition.
-\vspace{-0.75em}
+\vspace{-0.5em}
 \begin{itemize}[noitemsep]
 \item AD-01 (ATR): Task-Triggered/Continuous (highly autonomous, indigenously-controlled constellation). Utilizes custom onboard AI (Stargaze) for autonomous collision avoidance and navigation.
 \item AD-04.3 (ISL): Optical Laser: SpaceX successfully transitioned from RF to Laser ISLs operating up to 200 Gbps
 \item AD-05 (Routing): Adaptive Dynamic Mesh: Uses an autonomous global internet mesh to connect customers without requiring continuous reliance on a specific gateway.
-\item AD-07 (Orbit): Walker-Delta (Multi-plane) Operates a dense multi-plane muti-plane constellation at a lower altitude of ~550km to minimize signal latency.
 \end{itemize}
 \vspace{-0.75em}
 While starlink leads in network latency, our architecture has the ability to improve upon its Earth Observation (EO) capabilities by applying AD-01 (On-board continuous ATR) and AD-03 (Information snippets) to mission data. This would allow for immediate intelligence delivery without the massive backhaul required for the ful-image downlinks seen in the OneWeb or Starlink commercial models. Our project also aims to delivery similar latency to Starlink but at a vastly reduced cost while avoiding interface “lock-in” with proprietary SpaceX terminals.
