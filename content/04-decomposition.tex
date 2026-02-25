@@ -71,6 +71,7 @@ Concept C-06 was selected to explore decomposition because it was on the Pareto 
 \subsubsection{Initial Level I Decomposition Approach}
 
 The initial functional decomposition was derived directly from the project Concept of Operations (CONOP), organizing system behavior according to mission execution flow. This view emphasizes how sensing data progresses through the system from tasking through delivery, reflecting the operational sequence defined in the CONOP:
+The initial functional decomposition was derived directly from the project's CONOP, organizing system behavior according to mission execution flow. This view emphasizes how sensing data progresses through the system from tasking through delivery, reflecting the operational sequence defined in the CONOP. The initial Level I Decomposition is as follows:
 
 \vspace{1mm}
 \setlength{\fboxsep}{2mm}
@@ -87,14 +88,14 @@ The initial functional decomposition was derived directly from the project Conce
 }}
 \vspace{-0.1mm}
 
-\noindent Functions are grouped according to temporal handoffs \textit{(e.g., what comes next?)}, making this view effective for understanding end-to-end performance flow. The CONOP-based decomposition therefore provides strong insight into system behavior and execution sequencing, though architectural ownership boundaries remain less explicit.
+\noindent Functions are grouped by temporal handoffs \textit{(e.g., what comes next?)}, making this view effective for understanding the end-to-end performance flow. The CONOP-based decomposition, therefore, provides strong insight into system behavior and execution sequencing, though architectural ownership boundaries remain less explicit.
 
 Because Level I followed the CONOP, the operational perspective influenced not only the grouping but also the definition and naming of Level II functions.
 Functions framed around mission phases emphasized sequential behavior over persistent system responsibilities, shaping interpretation of relationships and how dependencies were represented within the DSM.
 This was evident in the team's difficulty clustering the initial DSM, which yielded diffused, waterfalled ``clusters''.
 
 \subsubsection{Reevaluation Approach}
-Because of the size and density of the DSM, manual inspection alone made it difficult to identify clustering patterns, particularly when influenced by the Initial Level I perspective. The team therefore leveraged DSM analysis tooling to support clustering and visualization \cite{dsm_editor_2024}.
+Because of the DSM's size and density, manual inspection alone made it difficult to identify clustering patterns, particularly when influenced by the Initial Level I perspective. The team therefore leveraged DSM analysis tooling to support clustering and visualization \cite{dsm_editor_2024}.
 Automated clustering enabled clearer observation of tightly coupled functional groupings and supported comparison between the CONOP-based decomposition and alternative architectural partitionings.
 
 \subsubsection{Revised Level I Decomposition}
