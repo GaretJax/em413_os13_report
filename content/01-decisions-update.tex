@@ -39,34 +39,36 @@
 % * Decisions aren't sensitive or connected.
 % * Too many decisions to possibly all be architectural in nature (e.g., more than 10).
 
-\vspace{-0.75em}
+\setlength{\fboxsep}{3mm}
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+  \textbf{TO} enable global decision making through persistent, low-latency space-based data \\
+  \textbf{BY} dynamically routing data through a networked constellation to bypass terrestrial infrastructure limitations \\
+  \textbf{USING} a networked pLEO constellation architecture.
+}}
+\vspace{2mm}
+
+\noindent After sponsor discussions since OS11, we have moved Ground Segment from fixed assumptions to an architectural decision (AD-06) to better address end-to-end latency. This reframing clarified that latency is not solely a function of link bandwidth, but that ground stations density also directly impact downlinking opportunities. Additional feedback and discussion with our sponsor led us to update AD-04.1 (Uplink Comms) because Ka-Band was determined to introduce excessive costs without impact on latency when compared to already available S/X-band radios. The final architectural decision set, refined to better reflect the structural drivers required to satisfy our SPS, is illustrated in \ref{tbl:decisions}.
+
 \begin{table}[h!]
   \caption{Morphological matrix, including past design solutions and updated architectural decisions.}
   \label{tbl:decisions}
   \input{tables/decisions}
 \end{table}
 
-After sponsor discussions since OS11, we have moved Ground Segment from fixed assumptions to an architectural decision (AD-06) to better address end-to-end latency. This reframing clarified that latency is not solely a function of link bandwidth, but of how routing authority, ground dependency, and data abstraction are structurally organized within the system architecture. Additional feedback and discussion with our sponsor led us to update AD-04.1 (Uplink Comms) because Ka-Band was determined to introduce unacceptable latency risk relative to S/X-band reliability, reinforcing link robustness over peak throughput. Further, our architectural decision set has been refined to better reflect the structural drivers required to satisfy our SPS.
-
-\vspace{-0.25em}
-\begin{figure}[h!]
-  \setlength{\fboxsep}{1mm}
-  \noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
-    \textbf{TO} enable global decision making through persistent, low-latency space-based data \\
-    \textbf{BY} dynamically routing data through a networked constellation to bypass terrestrial infrastructure limitations \\
-    \textbf{USING} a networked pLEO constellation architecture.
-  }}
-  \caption{SPS for the Airbus latency improvement project.}
-  \label{tbl:decisions}
-\end{figure}
-
 \vspace{-0.5em}
-The following justifies how each of these architectural decisions satisfies our problem space:
-\vspace{-0.75em}
-\begin{itemize}[noitemsep]
-\item \textbf{Data Volume Reduction (AD-01, AD-03):} These ADs satisfy the “low-latency” requirement by minimizing the number of bits transmitted, thereby bypassing bandwidth bottlenecks.
-\item \textbf{Network Optimization (AD-02, AD-05, AD-06):} These ADs enable “bypassing terrestrial infrastructure limitations” by using an adaptive mesh and strategic ground entry points to find the fastest path to the end-user.
-\item \textbf{Persistent Decision Flow (AD 04.1-04.3):} Defines the communication architecture that enables distributed routing and limits ground bottlenecks, directly supporting persistent, low-latency performance. 
+
+\noindent The following justifies how each of these architectural decisions satisfies our problem space:
+\begin{itemize}
+  \item \textbf{Data Volume Reduction (AD-01, AD-03):} These ADs satisfy the ``low-latency'' requirement by minimizing the number of bits transmitted, thereby bypassing bandwidth bottlenecks.
+  \item \textbf{Network Optimization (AD-02, AD-05, AD-06):} These ADs enable ``bypassing terrestrial infrastructure limitations'' and relative satellite positions by using an adaptive mesh to find the fastest path to the end-user.
+  \item \textbf{Persistent Decision Flow (AD 04.1-04.3):} Defines the communication architecture that enables distributed routing and limits ground bottlenecks, directly supporting persistent, low-latency performance.
 \end{itemize}
-\vspace{-0.75em}
-The identified architectural decisions (AD-01 through AD-06) represent a bounded and mutually exclusive set of technical tradeoffs. Each row in the morphological matrix forces a structural commitment that determines how information flows through the system. No additional architectural lever meaningfully influences latency without falling into implementation detail. Therefore, this set is sufficient to bound the tradespace while avoiding premature technology commitment. To achieve low-latency, the architecture allows for trading on-board processing levels (AD-01, AD-03) to minimize data volume before it ever hits the downlink bottleneck. To bypass terrestrial limitations, the tradespace includes multiple networking and routing configurations (AD-02, AD-05) that enable the system to find the optimal path to the end-user, regardless of local ground station availability. Persistence decision flows allow the team to optimize ground entry points to minimize "waiting time". Finally, by treating uplink communication (AD-04.1) as an open decision focused on S/X-Band reliability over raw speed, the architecture ensures the persistent availability of the command-and-control link under diverse atmospheric conditions. Collectively, these open decisions provide the necessary degrees of freedom to converge on a design that satisfies the rigorous latency and persistence requirements of the project. Therefore, at this stage, most decisions remain intentionally open to preserve architectural flexibility while bounding the tradespace with structurally meaningful options.
+
+\noindent The identified architectural decisions (AD-01 through AD-06) represent a bounded and mutually exclusive set of technical tradeoffs.
+Each row in \ref{tbl:decisions} forces a structural commitment that determines how information flows through the system.
+No additional architectural lever meaningfully influences latency without falling into implementation detail.
+Therefore, this set is sufficient to bound the tradespace while avoiding premature technology commitment.
+To achieve low-latency, the architecture allows for trading on-board processing levels (AD-01, AD-03) to minimize the volume of data to be transmitted.
+To bypass terrestrial limitations, the tradespace includes multiple networking and routing configurations (AD-02, AD-05) that enable the system to optimize the path to the end-user, regardless of satellite location.
+Collectively, these open decisions provide the necessary degrees of freedom to converge on a design that satisfies the rigorous latency and persistence requirements of the project.
+Therefore, at this stage, most decisions remain intentionally open to preserve architectural flexibility while bounding the tradespace with structurally meaningful options.
