@@ -286,9 +286,11 @@
 % Includegraphics support
 \RequirePackage{graphicx}
 \RequirePackage{wrapfig}
+\RequirePackage{caption}
+\RequirePackage{subcaption}
 %\RequirePackage{dblfloatfix}
 % Use subfloats for figures and tables (must be loaded after the caption and tocloft packages)
-\RequirePackage[lofdepth,lotdepth]{subfig}
+%\RequirePackage[lofdepth,lotdepth]{subfig}
 \RequirePackage{pdfpages}% Advanced inclusion support for external documents
 \newenvironment{inlinefigure}[1]
   {\vspace{-1.1mm}\par\noindent\minipage[b][#1\baselineskip][c]{\linewidth}\setlength{\parindent}{0em}\vspace{2.6mm}}
