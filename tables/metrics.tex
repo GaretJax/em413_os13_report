@@ -2,6 +2,12 @@
 
 \renewcommand{\tabularxcolumn}[1]{m{#1}}
 
+\pgfdeclarehorizontalshading{scorebar}{1mm}{%
+  color(0cm)=(red);
+  color(1.5cm)=(orange);
+  color(3cm)=(green)
+}
+
 \begin{tabularx}{\textwidth}{ l l l l X }
   \toprule
     \Th{ID} &
@@ -19,7 +25,7 @@
       \def\H{1mm}
 
       % Gradient bar (red -> green)
-      \shade[left color=red, right color=green] (0,0) rectangle (\L,\H);
+      \node at (\L/2,\H/2) {\pgfuseshading{scorebar} };
 
       % Outline (thin rectangle)
       \draw[line width=0.3pt] (0,0) rectangle (\L,\H);
@@ -46,7 +52,7 @@
       \def\H{1mm}
 
       % Gradient bar (red -> green)
-      \shade[left color=red, right color=green] (0,0) rectangle (\L,\H);
+      \node at (\L/2,\H/2) {\pgfuseshading{scorebar} };
 
       % Outline (thin rectangle)
       \draw[line width=0.3pt] (0,0) rectangle (\L,\H);

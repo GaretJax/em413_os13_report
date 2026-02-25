@@ -2,24 +2,40 @@
 
 \renewcommand{\tabularxcolumn}[1]{m{#1}}
 
+\newcommand{\scorecolor}[1]{%
+  \ifcase#1
+  white% 0 unused
+  \or red% 1
+  \or orange% 2
+  \or yellow!80!orange% 3
+  \or green!50!orange% 4
+  \or green!70!black% 5
+  \else gray% fallback
+  \fi
+}
+
+\newcommand{\scorebox}[1]{
+  \raisebox{1mm}[3.5mm][1.5mm]{\tikz[baseline=0mm]{
+    \fill[draw=black,fill=\scorecolor{#1}] (-2.5mm,-2.5mm) rectangle (2.5mm,2.5mm);
+    \node {#1};
+  }}
+}
+
 \newcommand{\row}[6]{
   \textbf{#1} \textit{#2} &
-  #3 &
+  \scorebox{#3} &
   #5 &
-  \tikz[baseline=0mm]{
-    \fill[red] (-3mm,-3mm) rectangle (3mm,3mm);
-    \node {#4};
-  } &
+  \scorebox{#4} &
   #6 \\
 }
 
-\begin{tabularx}{\textwidth}{ >{\raggedright\arraybackslash}m{9.5mm} c X c X }
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+
+\begin{tabularx}{\textwidth}{@{} >{\raggedright\arraybackslash}m{9.5mm} c @{\hspace{1mm}} X c @{\hspace{1mm}} X @{}}
   \toprule
     \Th{ID} &
-    \Th{Latency} &
-    \Th{Latency Rationale} &
-    \Th{Cost} &
-    \Th{Cost Rationale} \\
+    \multicolumn{2}{p{1cm}}{\Th{Latency}} &
+    \multicolumn{2}{p{1cm}}{\Th{Cost}} \\
   \midrule
     \row{C-01}{}{1}{4}{Direct-to-ground delivery dominated by orbital access.}{Baseline A450 architecture with funded commercial ground.}
   \midrule
