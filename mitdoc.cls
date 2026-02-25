@@ -145,11 +145,11 @@
   {1mm}
   {\raggedright#1}
 
-\titlespacing*{\subsubsection}{0mm}{0.5\baselineskip}{0mm}
+\titlespacing*{\subsubsection}{0mm}{0.3\baselineskip}{0mm}
 \titleformat{\subsubsection}[runin]
   {\headingsfont\fontsize{10pt}{11pt}\selectfont\bfseries}
   {\thesubsection}
-  {1mm}
+  {0.5mm}
   {\raggedright#1.\;\;}
 
 \newcommand{\usection}[1]{
