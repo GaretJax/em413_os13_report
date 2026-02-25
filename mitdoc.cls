@@ -771,7 +771,9 @@
   \tikzmark{qend}
 }
 
-\usepackage{xstring}
+\RequirePackage{xstring}
+\RequirePackage{fmtcount}
+\RequirePackage{ragged2e}
 
 \input{glossary.gls}
 \input{stakeholders.tex}

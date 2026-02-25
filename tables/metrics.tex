@@ -1,0 +1,67 @@
+\footnotesize
+
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+
+\begin{tabularx}{\textwidth}{ l l l l X }
+  \toprule
+    \Th{ID} &
+    \Th{Type} &
+    \Th{Metric} &
+    \Th{Assessment Scale} &
+    \Th{Description} \\
+  \midrule
+    \textbf{M1} &
+    Performance &
+    Latency &
+    \raisebox{2.5pt}[5mm][3.5mm]{\hspace{-1.5mm}\tikz[font=\scriptsize,baseline=0ex]{
+      % Dimensions
+      \def\L{3cm}
+      \def\H{1mm}
+
+      % Gradient bar (red -> green)
+      \shade[left color=red, right color=green] (0,0) rectangle (\L,\H);
+
+      % Outline (thin rectangle)
+      \draw[line width=0.3pt] (0,0) rectangle (\L,\H);
+
+      % End ticks
+      \draw[line width=0.3pt] (0,\H) -- (0,-1mm);
+      \draw[line width=0.3pt] (\L,\H) -- (\L,-1mm);
+
+      % Labels and numbers
+      \node[below=0.8mm] at (0,0) {1};
+      \node[below=0.8mm] at (\L,0) {5};
+
+      \node[yshift=0.5mm, xshift=-0.75pt, inner sep=0, anchor=south west] at (0,\H) {\smash{High latency}};
+      \node[yshift=0.5mm, xshift=0.5pt, inner sep=0, anchor=south east] at (\L,\H) {\smash{Low latency}};
+    }} &
+    Elapsed time from image acquisition to delivery of mission-ready data to the end user. \\
+  \midrule
+    \textbf{M4} &
+    Cost &
+    Lifecycle Cost &
+    \raisebox{2.5pt}[5mm][3.5mm]{\hspace{-1.5mm}\tikz[font=\scriptsize,baseline=0ex]{
+      % Dimensions
+      \def\L{3cm}
+      \def\H{1mm}
+
+      % Gradient bar (red -> green)
+      \shade[left color=red, right color=green] (0,0) rectangle (\L,\H);
+
+      % Outline (thin rectangle)
+      \draw[line width=0.3pt] (0,0) rectangle (\L,\H);
+
+      % End ticks
+      \draw[line width=0.3pt] (0,\H) -- (0,-1mm);
+      \draw[line width=0.3pt] (\L,\H) -- (\L,-1mm);
+
+      % Labels and numbers
+      \node[below=0.8mm] at (0,0) {1};
+      \node[below=0.8mm] at (\L,0) {5};
+
+      \node[yshift=0.5mm, xshift=-0.75pt, inner sep=0, anchor=south west] at (0,\H) {\smash{High cost}};
+      \node[yshift=0.5mm, xshift=0.5pt, inner sep=0, anchor=south east] at (\L,\H) {\smash{Low cost}};
+    }} &
+    Total lifecycle cost benchmarked against comparable commercial Earth-observation systems. \\
+  \bottomrule
+\end{tabularx}

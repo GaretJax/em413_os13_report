@@ -24,6 +24,30 @@
   #9 \\
 }
 
+\makeatletter
+\pgfdeclareplotmark{tnw}{
+  \pgfpathmoveto{\pgfqpoint{-2pt}{2.5pt}}
+  \pgfpathlineto{\pgfqpoint{4pt}{2.5pt}}
+  \pgfpathlineto{\pgfqpoint{-2pt}{-3.5pt}}
+  \pgfpathclose
+  \pgfusepathqfillstroke
+}
+\pgfdeclareplotmark{tne}{
+  \pgfpathmoveto{\pgfqpoint{2pt}{2.5pt}}
+  \pgfpathlineto{\pgfqpoint{-4pt}{2.5pt}}
+  \pgfpathlineto{\pgfqpoint{2pt}{-3.5pt}}
+  \pgfpathclose
+  \pgfusepathqfillstroke
+}
+\pgfdeclareplotmark{tsw}{
+  \pgfpathmoveto{\pgfqpoint{-2pt}{-2.5pt}}
+  \pgfpathlineto{\pgfqpoint{4pt}{-2.5pt}}
+  \pgfpathlineto{\pgfqpoint{-2pt}{3.5pt}}
+  \pgfpathclose
+  \pgfusepathqfillstroke
+}
+\makeatother
+
 \renewcommand{\arraystretch}{1.4}
 \setlength{\tabcolsep}{4pt}
 \definecolor{iridiumyellow}{HTML}{F3B207}
@@ -67,69 +91,151 @@
   \hline
 \CodeAfter
   \tikz[remember picture, overlay]{
+
+    \node[draw=black, xshift=1.6mm, yshift=-5mm, color=black, inner sep=0, minimum width=26mm, minimum height=10mm, anchor=north east] (l) at (9-8.south east) {};
+
+    \node[align=right,text width=42mm,anchor=north east] at (l.north west) {
+      \RaggedLeft
+      Legend for past design \\
+      solutions described in \ref{sec:past-designs}:
+    };
+
     % Iridium
     \draw[
       iridiumyellow,
+      only marks,
       yshift=0mm,
       line width=0.8pt,
-      mark=*,
-      mark size=1.8pt,
+      mark=tnw,
       mark options={solid},
     ] plot coordinates {
-      ([yshift=0mm]2-3.south west) % None
-      ([yshift=0mm]3-4.south west) % LEO-LEO
-      ([xshift=4mm]4-6.south west) % n/a (voice)
-      ([xshift=4mm]5-6.north west) % n/a (Ka-Band)
-      ([yshift=0mm]6-5.north west) % Ka-Band
-      ([yshift=0mm]7-5.north west) % Ka-Band
-      ([yshift=-1mm]8-4.west) % Mesh
-      ([yshift=0mm]9-3.north) % Dedicated
+      ([yshift=0mm]2-3.north west) % None
+      ([yshift=0mm]3-4.north west) % LEO-LEO
+      ([xshift=0mm]4-6.north west) % n/a (voice)
+      ([yshift=0.6em]5-6.north west) % n/a (Ka-Band)
+      ([yshift=0.6em]6-5.north west) % Ka-Band
+      ([yshift=0.6em]7-5.north west) % Ka-Band
+      ([yshift=0mm]8-4.north west) % Mesh
+      ([yshift=0mm]9-3.north west) % Dedicated
+      ([xshift=1.6mm,yshift=-1.6mm]l.north west)
     };
-    \node[xshift=4mm,right,iridiumyellow!70!Sienna4,font=\tiny] at (4-6.south west) {Data (voice)};
-    \node[xshift=4mm,right,iridiumyellow!70!Sienna4,font=\tiny] at (5-6.north west) {Ka-Band RF};
+    \node[yshift=0.2em,xshift=-0.1em,below right,iridiumyellow!70!Sienna4,font=\tiny] at (4-6.north west) {Data (voice)};
+    \node[yshift=0.8em,xshift=-0.1em,below right,iridiumyellow!70!Sienna4,font=\tiny] at (5-6.north west) {Ka-Band RF};
+    \node[yshift=-0.4em,xshift=0.4em,below right,iridiumyellow!70!Sienna4,font=\footnotesize] at (l.north west) {Iridium};
 
     % OneWeb
     \draw[
       onewebblue,
+      only marks,
       yshift=0mm,
       line width=0.8pt,
-      mark=*,
-      mark size=1.8pt,
+      mark=tne,
       mark options={solid},
     ] plot coordinates {
-      ([yshift=0mm]2-3.south east) % None
-      ([yshift=1.8mm]3-3.east) % Direct to ground
-      ([xshift=0mm]4-6.north west) % n/a (data)
-      ([xshift=0mm]5-6.south west) % Ka-Band
-      ([yshift=0mm]6-5.south east) % Ka-Band
-      ([yshift=0mm]7-6.west) % None
-      ([yshift=0mm]8-3.south east) % Fixed
-      ([yshift=0mm]9-5.south west) % Mixed
+      ([yshift=0mm]2-3.north east) % None
+      ([yshift=0.6em]3-3.north east) % Direct to ground
+      ([xshift=0mm]4-6.north east) % n/a (data)
+      ([yshift=0.6em]5-6.north east) % Ka-Band
+      ([yshift=0.6em]6-5.north east) % Ka-Band
+      ([yshift=0.6em]7-6.north east) % None
+      ([yshift=0mm]8-3.north east) % Fixed
+      ([yshift=0mm]9-5.north east) % Mixed
+      ([xshift=-1.6mm,yshift=-1.6mm]l.north east)
     };
-    \node[yshift=0mm,xshift=0mm,right,onewebblue!70!Turquoise4,font=\tiny] at (4-6.north west) {Data (internet)};
-    \node[xshift=0mm,right,onewebblue!70!Turquoise4,font=\tiny] at (5-6.south west) {Ka-Band RF};
+    \node[yshift=0.2em,xshift=-0.1em,below left,onewebblue!70!Turquoise4,font=\tiny] at (4-6.north east) {Data (internet)};
+    \node[yshift=0.8em,xshift=-0.1em,below left,onewebblue!70!Turquoise4,font=\tiny] at (5-6.north east) {Ka-Band RF};
+    \node[yshift=-0.4em,xshift=-0.4em,below left,onewebblue!70!Turquoise4,font=\footnotesize] at (l.north east) {OneWeb};
 
     % Starlink
     \draw[
       red,
       yshift=0mm,
+      only marks,
       line width=0.8pt,
-      mark=*,
-      mark size=1.8pt,
+      mark=tsw,
       mark options={solid},
     ] plot coordinates {
-      ([yshift=0mm]2-3.north east) % None
-      ([yshift=0mm]3-4.north east) % LEO-LEO
-      ([yshift=0mm]4-6.north east) % n/a (data)
-      ([yshift=-1.8mm]5-6.south east) % Ka-Band
-      ([yshift=0mm]6-5.north east) % Ka-Band
-      ([yshift=0mm]7-3.east) % Laser
-      ([yshift=0mm]8-4.north west) % Mesh
-      ([yshift=0mm]9-3.north west) % Dedicated
+      ([yshift=0mm]2-3.south west) % None
+      ([yshift=0mm]3-4.south west) % LEO-LEO
+      ([yshift=0mm]4-6.south west) % n/a (data)
+      ([yshift=-0.6em]5-6.south west) % Ka-Band
+      ([yshift=-0.6em]6-5.south west) % Ka-Band
+      ([yshift=-0.6em]7-3.south west) % Laser
+      ([yshift=0mm]8-4.south west) % Mesh
+      ([yshift=0mm]9-3.south west) % Dedicated
+      ([xshift=1.6mm,yshift=1.6mm]l.south west)
     };
-    \node[yshift=0mm,xshift=0mm,below left,red,font=\tiny] at (4-6.north east) {Data (internet)};
-    \node[yshift=-1.8mm,above left,red,font=\tiny] at (5-6.south east) {Ka-Band RF};
+    \node[yshift=-0.3em,xshift=-0.1em,above right,red,font=\tiny] at (4-6.south west) {Data (internet)};
+    \node[yshift=-0.8em,xshift=-0.1em,above right,red,font=\tiny] at (5-6.south west) {Ka-Band RF};
+    \node[yshift=0.4em,xshift=0.4em,above right,red,font=\footnotesize] at (l.south west) {Starlink};
+
+    % % Iridium
+    % \draw[
+    %   iridiumyellow,
+    %   only marks,
+    %   yshift=0mm,
+    %   line width=0.8pt,
+    %   mark=*,
+    %   mark size=1.8pt,
+    %   mark options={solid},
+    % ] plot coordinates {
+    %   ([yshift=0mm]2-3.south west) % None
+    %   ([yshift=0mm]3-4.south west) % LEO-LEO
+    %   ([xshift=4mm]4-6.south west) % n/a (voice)
+    %   ([xshift=4mm]5-6.north west) % n/a (Ka-Band)
+    %   ([yshift=0mm]6-5.north west) % Ka-Band
+    %   ([yshift=0mm]7-5.north west) % Ka-Band
+    %   ([yshift=-1mm]8-4.west) % Mesh
+    %   ([yshift=0mm]9-3.north) % Dedicated
+    % };
+    % \node[xshift=4mm,right,iridiumyellow!70!Sienna4,font=\tiny] at (4-6.south west) {Data (voice)};
+    % \node[xshift=4mm,right,iridiumyellow!70!Sienna4,font=\tiny] at (5-6.north west) {Ka-Band RF};
+
+    % % OneWeb
+    % \draw[
+    %   onewebblue,
+    %   only marks,
+    %   yshift=0mm,
+    %   line width=0.8pt,
+    %   mark=*,
+    %   mark size=1.8pt,
+    %   mark options={solid},
+    % ] plot coordinates {
+    %   ([yshift=0mm]2-3.south east) % None
+    %   ([yshift=1.8mm]3-3.east) % Direct to ground
+    %   ([xshift=0mm]4-6.north west) % n/a (data)
+    %   ([xshift=0mm]5-6.south west) % Ka-Band
+    %   ([yshift=0mm]6-5.south east) % Ka-Band
+    %   ([yshift=0mm]7-6.west) % None
+    %   ([yshift=0mm]8-3.south east) % Fixed
+    %   ([yshift=0mm]9-5.south west) % Mixed
+    % };
+    % \node[yshift=0mm,xshift=0mm,right,onewebblue!70!Turquoise4,font=\tiny] at (4-6.north west) {Data (internet)};
+    % \node[xshift=0mm,right,onewebblue!70!Turquoise4,font=\tiny] at (5-6.south west) {Ka-Band RF};
+
+    % % Starlink
+    % \draw[
+    %   red,
+    %   yshift=0mm,
+    %   only marks,
+    %   line width=0.8pt,
+    %   mark=*,
+    %   mark size=1.8pt,
+    %   mark options={solid},
+    % ] plot coordinates {
+    %   ([yshift=0mm]2-3.north east) % None
+    %   ([yshift=0mm]3-4.north east) % LEO-LEO
+    %   ([yshift=0mm]4-6.north east) % n/a (data)
+    %   ([yshift=-1.8mm]5-6.south east) % Ka-Band
+    %   ([yshift=0mm]6-5.north east) % Ka-Band
+    %   ([yshift=0mm]7-3.east) % Laser
+    %   ([yshift=0mm]8-4.north west) % Mesh
+    %   ([yshift=0mm]9-3.north west) % Dedicated
+    % };
+    % \node[yshift=0mm,xshift=0mm,below left,red,font=\tiny] at (4-6.north east) {Data (internet)};
+    % \node[yshift=-1.8mm,above left,red,font=\tiny] at (5-6.south east) {Ka-Band RF};
+
 
   }%
+  \vspace{10mm}
 \end{NiceTabularX}
-

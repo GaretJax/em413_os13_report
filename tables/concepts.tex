@@ -1,0 +1,72 @@
+\footnotesize
+
+\setcounter{rownumber}{0}
+
+\renewcommand{\therownumber}{%
+  \ifnum\value{rownumber}<10 0\fi
+  \arabic{rownumber}%
+}
+
+\renewcommand{\arraystretch}{1.3}
+
+\newcommand{\row}[9]{
+  \stepcounter{rownumber}%
+  \textbf{C-\therownumber} &
+  #1 &
+  #2 &
+  #3 &
+  #4 &
+  #5 &
+  #6 &
+  #7 &
+  #8 &
+  #9 \\
+}
+
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+\renewcommand{\arraystretch}{1.1}
+
+\begin{tabularx}{\linewidth}{l L | M{14mm} M{14mm} M{12mm} M{12mm} M{12mm} M{12mm} M{12mm} M{15mm}}
+  \toprule
+    \multirow{2}{*}{\Th{ID}} &
+    \multirow{2}{*}{\Th{Concept Name}} &
+    \Th{AD-01} &
+    \Th{AD-02} &
+    \Th{AD-03} &
+    \Th{AD-04.1} &
+    \Th{AD-04.2} &
+    \Th{AD-04.3} &
+    \Th{AD-05} &
+    \Th{AD-06} \\
+    &
+    &
+    \textit{ATR} &
+    \textit{Path} &
+    \textit{Product} &
+    \textit{Uplink} &
+    \textit{Downlink} &
+    \textit{Inter-Sat} &
+    \textit{Routing} &
+    \textit{Ground} \\
+  \midrule
+    \row{Bent-Pipe Baseline}{None}{Direct to Ground}{Full Image}{S-Band}{X-Band}{None}{Static}{Commercial GSaaS}
+  \midrule
+    \row{Smart Baseline}{Task-Triggered}{Direct to Ground}{Snippet}{S-Band}{X-Band}{None}{Static}{Commercial GSaaS}
+  \midrule
+    \row{Static GEO Relay}{Task-Triggered}{LEO-GEO \nth{3} party}{Snippet}{S-Band}{None (Relay)}{Ka-Band}{Static}{Commercial GSaaS}
+  \midrule
+    \row{RF Mesh Network}{Task-Triggered}{LEO-LEO Internal}{Snippet}{S-Band}{X-Band}{X-Band}{Adaptive Mesh}{Hybrid}
+  \midrule
+    \row{RF Store \& Forward}{Task-Triggered}{LEO-LEO Internal}{Metadata}{S-Band}{Ka-Band}{X-Band}{Store \& Forward}{Hybrid}
+  \midrule
+    \row{Compute Mesh}{Continuous}{LEO-LEO Internal}{Metadata}{S-Band}{X-Band}{X-Band}{Adaptive Mesh}{Hybrid}
+  \midrule
+    \row{Hosted Mesh}{Continuous}{LEO-LEO \nth{3} Party}{Metadata}{S-Band}{X-Band}{X-Band}{Adaptive Mesh}{Commercial GSaaS}
+  \midrule
+    \row{High Fidelity Rapid}{Continuous}{LEO-LEO Internal}{Full Image}{S-Band}{Optical}{Optical}{Adaptive Mesh}{Hybrid}
+  \midrule
+    \row{Regional Geographic Area}{Task-Triggered}{Direct to Ground}{Snippet}{S-Band}{X-Band}{None}{Static}{Commercial GSaaS}
+  \midrule
+    \row{LEO-GEO Optical}{Task Triggered}{LEO-GEO \nth{3} Party}{Snippet}{S-Band}{None (Relay) }{Optical}{Static}{Commercial GSaaS}
+  \bottomrule
+\end{tabularx}

@@ -45,11 +45,16 @@
   \input{tables/decisions}
 \end{table}
 
-\textbf{TO} enable global decision making through persistent, low-latency space-based data
-
-\textbf{BY} dynamically routing data through a networked constellation to bypass terrestrial infrastructure limitations
-
-\textbf{USING} a networked pLEO constellation architecture.
+\begin{figure}[h!]
+  \setlength{\fboxsep}{3mm}
+  \noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+    \textbf{TO} enable global decision making through persistent, low-latency space-based data \\
+    \textbf{BY} dynamically routing data through a networked constellation to bypass terrestrial infrastructure limitations \\
+    \textbf{USING} a networked pLEO constellation architecture.
+  }}
+  \caption{SPS for the Airbus latency improvement project.}
+  \label{tbl:decisions}
+\end{figure}
 
 \vspace{0.5em}
 After speaking with our sponsors since OS11, we have moved Orbit and Ground Segment from fixed assumptions to architectural decisions (AD-06/07) to better address end-to-end latency.  Additional feedback and discussion with our sponsor led us to update AD-04.1 (Uplink Comms) from Ka-Band to S/X-band in order to prioritize link reliability over data size for uplink. Further, our architectural decision set has been refined to better reflect the structural drivers required to satisfy our SPS. The most consequential update is elevating the data path (AD-02) to the architectural anchor. 

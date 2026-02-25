@@ -1,0 +1,51 @@
+\footnotesize
+
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+
+\newcommand{\row}[6]{
+  \textbf{#1} \textit{#2} &
+  #3 &
+  #5 &
+  \tikz[baseline=0mm]{
+    \fill[red] (-3mm,-3mm) rectangle (3mm,3mm);
+    \node {#4};
+  } &
+  #6 \\
+}
+
+\begin{tabularx}{\textwidth}{ >{\raggedright\arraybackslash}m{9.5mm} c X c X }
+  \toprule
+    \Th{ID} &
+    \Th{Latency} &
+    \Th{Latency Rationale} &
+    \Th{Cost} &
+    \Th{Cost Rationale} \\
+  \midrule
+    \row{C-01}{}{1}{4}{Direct-to-ground delivery dominated by orbital access.}{Baseline A450 architecture with funded commercial ground.}
+  \midrule
+    \row{C-02}{}{2}{4}{ATR snippet reduces processing delay but remains contact-limited.}{Adds onboard processing with minimal hardware change.}
+  \midrule
+    \row{C-03}{}{2}{3}{GEO relay reduces ground dependence but adds relay delay.}{External relay avoids constellation-wide upgrades.}
+  \midrule
+    \row{C-04}{}{3}{3}{LEO mesh routes data toward earlier ground access.}{RF ISLs and routing integration add moderate complexity.}
+  \midrule
+    \row{C-05}{}{4}{3}{Metadata products reduce volume and improve delivery timing.}{RF mesh added without optical hardware burden.}
+  \midrule
+    \row{C-06}{}{4}{4}{Continuous ATR and adaptive routing reduce wait-to-contact effects.}{Persistent onboard compute and networking increase lifecycle cost.}
+  \midrule
+    \row{C-07}{}{4}{2}{Hosted mesh transport provides routing benefits externally.}{Transport infrastructure externalized via service model.}
+  \midrule
+    \row{C-08}{}{5}{1}{Optical links minimize transmission and routing bottlenecks.}{Optical terminals and precision pointing drive highest cost.}
+  \midrule
+    \row{C-10}{}{3}{5}{Regional geometry improves revisit but retains direct downlink limits.}{Specialized constellation reduces economies of scale.}
+  \midrule
+    \row{C-12}{}{3}{3}{Optical GEO relay improves access without full mesh networking.}{Adds relay terminal complexity but avoids constellation ISLs.}
+  \midrule
+    \row{R-01}{OneWeb}{2}{3}{Bent-pipe commercial delivery with limited routing control.}{Moderate subscription-based transport cost.}
+  \midrule
+    \row{R-02}{Iridium}{3}{2}{Operational RF mesh enables multi-hop gateway access.}{Mature external mesh minimizes mission-owned infrastructure.}
+  \midrule
+    \row{R-03}{Starlink}{5}{1}{Dense constellation and crosslinks enable near-persistent connectivity.}{Highest infrastructure complexity to replicate or integrate.}
+  \bottomrule
+
+\end{tabularx}
