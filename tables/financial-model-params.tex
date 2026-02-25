@@ -1,0 +1,64 @@
+\small
+\begin{tabularx}{\linewidth}{@{} l l S[table-format=8.0] l X @{}}
+\toprule
+\Th{Category} & \Th{Parameter} & \Th{Value} & \Th{Units} & \Th{Source / Notes} \\
+\midrule
+
+\multirow[t]{7}{*}{\textbf{Production}}
+& Baseline production rate        & 4        & sats/week          & Assumption \\
+\cmidrule(lr){2-5}
+& High production rate            & 15       & sats/week          & \cite{arrow_brochure} \\
+\cmidrule(lr){2-5}
+& Operating weeks per year        & 48       & weeks/year         & \\
+\cmidrule(lr){2-5}
+& Platform planning horizon       & 15       & years              & Planning assumption \\
+\cmidrule(lr){2-5}
+& Maximum production capacity     & 10800    & sats               & Over whole platform planning horizon \\
+\cmidrule(lr){2-5}
+& Constellation size              & 30       & sats/constellation & Assumption; min.\ requirement 20, average case assumed \\
+\cmidrule(lr){2-5}
+& Baseline cost                   & 5000000  & USD/sat            & Conversation with sponsor; indicative \\
+\midrule
+
+\multirow[t]{5}{*}{\textbf{Non-platform strategy}}
+& Initial NRE for comms           & 9580019  & USD                & Assumption; for initial constellation, see NRE estimations \\
+\cmidrule(lr){2-5}
+& Reuse between constellations    & 70       & \%                 & \\
+\cmidrule(lr){2-5}
+& Incremental NRE                 & 2874006  & USD/constellation  & Assumption; for subsequent constellations, assumes 75\% reuse \\
+\cmidrule(lr){2-5}
+& Learning benefit                & 4        & \%                 & Assumption; of baseline cost, amortized over whole program \\
+\cmidrule(lr){2-5}
+& Learning savings                & 200000   & USD/unit           & \\
+\midrule
+
+\multirow[t]{8}{*}{\textbf{Platform strategy}}
+& Generations                     & 4        & generations        & Planning assumption; refresh every 3--5 years \\
+\cmidrule(lr){2-5}
+& NRE overhead, per generation    & 50       & \%                 & Assumption; of non-platform initial NRE \\
+\cmidrule(lr){2-5}
+& NRE per generation              & 14370029 & USD/generation     & \\
+\cmidrule(lr){2-5}
+& Total platform NRE              & 57480115 & USD                & \\
+\cmidrule(lr){2-5}
+& Overperformance penalty         & 4        & \%                 & Assumption; of baseline cost, amortized over whole program \\
+\cmidrule(lr){2-5}
+& Overperformance cost            & 200000   & USD/unit           & \\
+\cmidrule(lr){2-5}
+& Learning benefit                & 10       & \%                 & Assumption; of baseline cost, amortized over whole program \\
+\cmidrule(lr){2-5}
+& Learning savings                & 500000   & USD/unit           & \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4mm}
+\textbf{Notes and limitations:}
+\vspace{1mm}
+\begin{itemize}[noitemsep,nosep]
+  \item Time value of money is not considered (no cash flow analysis done).
+  \item Model is a simplification for assignment resolution purposes.
+  \item Assumptions are very rough estimates.
+  \item Does not include ground segment.
+  \item Focuses exclusively on production costs.
+  \item Objective of platforming is to increase revenue by being able to accommodate more use cases at the same price point. The analysis is based on costs, but shows increased value with an increase of the number of units sold (also helping with factory utilization). However, the model is not attempting to predict the increase in units sold thanks to the addition of a cost-effective latency-reduction solution.
+\end{itemize}

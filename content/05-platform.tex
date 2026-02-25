@@ -90,8 +90,11 @@ In-orbit maintenance and spare pooling provide little benefit once satellites ar
 Customization is performance-based and focused on latency characteristics, while payload integration remains fully flexible under ARROW's modular design. Differentiation occurs through communications modules, routing intelligence, and processing tiers. Optional wideband Ka-band links and optical inter-satellite links \cite{arrow_brochure} directly enable latency-tier configurations: baseline direct-to-ground downlink, enhanced high-bandwidth routing, and low-latency inter-satellite connectivity. Structural envelope, power architecture, and interface definitions remain common to prevent divergence and re-engineering efforts.
 
 \subsubsection{Financial Model and Targets}
-\todo{I have a rough financial model that I will put in an appendix and then rewrite this section. Ignore the content here for now.}
-The platform introduces a premium through latency architecture development, compatibility validation, and interface governance. Assuming incremental NRE on the order of tens of millions of dollars, amortization over three generations and sufficient production volume keeps per-unit impact manageable. ARROW's serial production and COTS-based scaling depend on stable mechanical and electrical interfaces; frequent architectural resets would erode learning effects and qualification reuse. The strategy accepts bounded overperformance. Freezing interface envelopes for 15 years may create excess mass, power, or computational margin, and backward compatibility may retain legacy protocol support.
+The platform introduces a premium through latency architecture development, compatibility validation, and interface governance, as well as overperformance.
+Assuming incremental NRE on the order of tens of millions of dollars, amortization over four generations and sufficient production volume, the simple model presented in \ref{sec:financial-model} outperforms a non-platform strategy in scenarios accounting for at least 600 units sold over the program duration, yielding a potential benefit of up to \pct{3.9}.
+
+ARROW's serial production and COTS-based scaling depend on stable mechanical and electrical interfaces; frequent architectural resets would erode learning effects and qualification reuse.
+The strategy accepts bounded overperformance to account for excess mass, power, or computational margin, and backward compatibility required to retain legacy protocol support.
 %These inefficiencies are the cost of preserving architectural continuity and multi-generation amortization. 
 %Governance must prevent high-end requirements from inflating cost-sensitive variants, while allowing internal efficiency improvements within fixed interfaces.
 
