@@ -71,7 +71,7 @@ Starlink advances the distributed LEO mesh architecture by integrating optical i
 
 Looking across Iridium, OneWeb, and Starlink, the primary distinction is not hardware but the structural logic governing how information moves through the system.
 Iridium first shifted routing authority into space using RF inter-satellite links, reducing dependence on ground visibility.
-OneWeb made a different architectural commitment, retaining routing and processing on the ground and treating satellites as bent-pipe relays to prioritize manufacturing scalability and gateway density.
+OneWeb made different architectural commitments, retaining routing and processing on the ground and treating satellites as bent-pipe relays to prioritize manufacturing scalability and gateway density.
 Starlink pushed the distributed model further by embedding optical crosslinks and adaptive routing directly into the constellation, allowing the network itself to dynamically shape latency performance.
 Across these systems, the relocation of routing authority (ground to space) represents a major architectural shift, whereas changes such as RF versus optical or orbital altitude are implementation decisions that reinforce that structural commitment.
 
@@ -79,9 +79,8 @@ To make these architectural choices explicit, each legacy system was mapped into
 By plotting their selected architectural decisions within the same structured framework, the similarities and divergences between the three systems become clearer.
 
 Our proposed design reflects a deliberate shift in emphasis.
-Rather than treating latency purely as a function of orbital altitude or link technology, we treat the structure of information flow as the primary design lever.
+Rather than treating latency purely as a function of link technology, we treat the structure of information flow as the primary architectural lever.
 Continuous onboard processing and selective data products reduce volume before it enters the network, shifting the problem from moving large files quickly to delivering the right information immediately.
 By elevating routing structure as the architectural anchor, we avoid over-committing to any single ground infrastructure model or proprietary interface and instead re-balance the distributed mesh around mission-relevant timeliness rather than throughput.
-What improves over past systems is not simply speed, but coherence: instead of optimizing components in isolation, the architecture aligns onboard processing, routing authority, and ground entry strategy around a unified performance objective.
-This structural alignment reduces unnecessary backhaul, limits dependence on terrestrial chokepoints, and preserves flexibility as mission demands evolve.
+What improves over past systems is not simply speed, but coherence: instead of optimizing components in isolation, the architecture aligns onboard processing, routing authority, and ground entry strategy around a unified performance objective. This structural alignment reduces unnecessary backhaul, limits dependence on terrestrial chokepoints, and preserves flexibility as mission demands evolve. The improvement shifts processing and routing authority, making it architectural rather than technological.
 %The improvement is architectural before it is technological.
