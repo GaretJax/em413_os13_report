@@ -775,5 +775,5 @@
 \RequirePackage{fmtcount}
 \RequirePackage{ragged2e}
 
-\input{glossary.gls}
+\input{glossary.tex}
 \input{stakeholders.tex}
